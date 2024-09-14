@@ -33,14 +33,14 @@ export default function DashboardLayout({
       name: "dashboard",
       path: "/dashboard",
       active: "Home",
-      role: [1],
+      role: [0, 1],
     },
     {
       icon: <UserCircleIcon {...icon} />,
       name: "Siswa",
       path: "/siswa",
       active: "Siswa",
-      role: [1, 2],
+      role: [0],
     },
     {
       icon: <DocumentIcon {...icon} />,
