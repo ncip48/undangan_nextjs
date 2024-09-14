@@ -1,8 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { ResponseApiFail, ResponseApiSuccess } from "../utils/response";
-import { getAuth } from "../utils/auth";
 import prisma from "@/lib/prisma";
-import { hashPassword } from "../utils/password";
 
 interface ProductInterface {
   id?: string;
