@@ -3,12 +3,10 @@
 import React, { FormEvent, useState } from "react";
 import { login } from "../lib";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { z } from "zod";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { loginServices } from "@/services/actions/login";
-import { getProfile } from "@/services/actions/profile";
 
 function Index() {
   const router = useRouter();
@@ -54,11 +52,7 @@ function Index() {
           email: res.email,
         };
         await login(res.token, profile);
-        if (profile?.role == 0) {
-          router.push("/scan");
-        } else {
-          router.push("/dashboard");
-        }
+        router.push("/dashboard");
       }
 
       setErrors([]);
