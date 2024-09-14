@@ -1,5 +1,3 @@
-import { baseUrl } from "@/services/constants";
-import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { ResponseApiFail, ResponseApiSuccess } from "../utils/response";
 import { getAuth } from "../utils/auth";
