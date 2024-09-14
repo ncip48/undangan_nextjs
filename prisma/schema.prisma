@@ -25,3 +25,26 @@ model User {
 
   @@map("users")
 }
+
+model Product {
+  id              String   @id @default(uuid())
+  name            String
+  price           Int
+  description     String   @db.Text
+  includePrintout Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("products")
+}
+
+model Template {
+  id        String   @id @default(uuid())
+  name      String
+  path      String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("templates")
+}
