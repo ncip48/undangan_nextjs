@@ -4,12 +4,12 @@ import toast from "react-hot-toast";
 import { baseUrl } from "../constants";
 
 interface FormLoginProps {
-  username: string;
+  email: string;
   password: string;
 }
 
 export async function loginServices(form: FormLoginProps) {
-  const response = await fetch(`${baseUrl}/authenticate`, {
+  const response = await fetch(`/api/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,10 +17,10 @@ export async function loginServices(form: FormLoginProps) {
     body: JSON.stringify(form),
   });
   const result = await response.json();
-  if (result.status !== 200) {
+  if (!result.success) {
     toast.error(result.message);
     return null;
   } else {
-    return result.data[0];
+    return result.data;
   }
 }

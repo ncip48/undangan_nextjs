@@ -12,7 +12,7 @@ interface LoginInterface {
 export async function POST(request: NextRequest) {
   try {
     const { email, password }: LoginInterface = await request.json();
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findUnique({
       where: {
         email,
       },
@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
             id: user.id,
             username: user.username,
             email: user.email,
+            role: user.role,
           };
 
           //add JWT to response

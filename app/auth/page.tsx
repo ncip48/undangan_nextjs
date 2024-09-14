@@ -23,7 +23,7 @@ function Index() {
       const formData = new FormData(event.currentTarget);
 
       const schema = z.object({
-        username: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        email: z.string().email().min(1, { message: "Kolom ini diperlukan" }),
         password: z
           .string()
           .min(1, { message: "Kolom ini diperlukan" })
@@ -31,7 +31,7 @@ function Index() {
       });
 
       const response = schema.safeParse({
-        username: formData.get("username"),
+        email: formData.get("email"),
         password: formData.get("password"),
       });
 
@@ -48,8 +48,12 @@ function Index() {
 
       const res = await loginServices(response.data);
       if (res) {
-        const profile = await getDataProfile(res);
-        await login(res, profile);
+        const profile = {
+          role: res.role,
+          username: res.username,
+          email: res.email,
+        };
+        await login(res.token, profile);
         if (profile?.role == 0) {
           router.push("/scan");
         } else {
@@ -63,11 +67,6 @@ function Index() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const getDataProfile = async (token: string) => {
-    const res = await getProfile(token);
-    return res;
   };
 
   return (
@@ -86,10 +85,10 @@ function Index() {
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={onSubmit}>
               <Input
-                label="Username"
-                name="username"
+                label="Email"
+                name="email"
                 errors={errors}
-                placeholder="johndoe444"
+                placeholder="johndoe@mail.com"
               />
               <Input
                 label="Password"
