@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getSession } from "./app/lib";
+import { verifyJwtToken } from "./lib/token";
+import { ResponseApiFail } from "./app/api/utils/response";
 
 const protectedRoutes = [
   "/dashboard",
@@ -14,6 +16,26 @@ const dissallowAdmin = ["/dashboard", "/scan", "/report", "/scan-out"];
 const dissallowKepsek = ["/scan", "/scan-out"];
 
 export default async function middleware(req: NextRequest) {
+  //API Configuration
+  const path = req.nextUrl.pathname;
+  const publicRoutes = ["/api/auth/login", "/api/auth/register"];
+  const isPublicRoute = publicRoutes.includes(path);
+  const token: any = req.headers?.get("Authorization")?.split(" ")[1];
+
+  const verifiedToken =
+    token &&
+    (await verifyJwtToken(token).catch((error) => {
+      console.log("Token verification error ", error);
+    }));
+
+  if (path.startsWith("/api")) {
+    if (isPublicRoute) {
+      return NextResponse.next();
+    } else if (!isPublicRoute && !verifiedToken) {
+      return ResponseApiFail("Unauthorized", 401);
+    }
+  }
+
   const getAuth = await getSession();
   const role = getAuth?.user?.profile?.role;
 
