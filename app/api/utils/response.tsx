@@ -12,12 +12,18 @@ export const ResponseApiSuccess = (message: string, data: any) => {
 };
 
 export const ResponseApiFail = (message: string, code: number = 500) => {
+  let statusCode = code;
+  let msg = message;
+  if (message == "invalid signature" || message.includes("jwt must be")) {
+    statusCode = 401;
+    message = "Unauthorized";
+  }
   return NextResponse.json(
     {
       success: false,
       message,
       data: null,
     },
-    { status: code }
+    { status: statusCode }
   );
 };

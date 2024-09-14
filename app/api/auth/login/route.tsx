@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { ResponseApiFail, ResponseApiSuccess } from "../../utils/response";
 import prisma from "@/lib/prisma";
 import { comparePassword } from "../../utils/password";
+import jwt from "jsonwebtoken";
 
 interface LoginInterface {
   email: string;
@@ -23,7 +24,21 @@ export async function POST(request: NextRequest) {
         if (!user.emailConfirmed) {
           return ResponseApiFail("Please verify email first", 400);
         } else {
-          return ResponseApiSuccess("Login successfully", user);
+          const tokenData = {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+          };
+
+          //add JWT to response
+          const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {
+            expiresIn: "1d",
+          });
+
+          return ResponseApiSuccess("Login successfully", {
+            ...tokenData,
+            token,
+          });
         }
       } else {
         return ResponseApiFail("Password incorrect", 400);
