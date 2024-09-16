@@ -16,12 +16,22 @@ const dissallowAdmin = ["/dashboard", "/scan", "/report", "/scan-out"];
 const dissallowKepsek = ["/scan", "/scan-out"];
 
 export default async function middleware(req: NextRequest) {
-  
   //API Middleware
   const path = req.nextUrl.pathname;
-  const publicRoutes = ["/api/auth/login", "/api/auth/register"];
-  const isPublicRoute = publicRoutes.includes(path);
-  const token: any = req.headers?.get("Authorization")?.split(" ")[1];
+
+  // Define patterns for public routes
+  const publicRoutePatterns = [
+    /^\/api\/auth\/login$/,
+    /^\/api\/auth\/register$/,
+    /^\/api\/weddings\/[^\/]+$/, // Regex pattern for /api/weddings/:username
+  ];
+
+  // Check if the path matches any public route patterns
+  const isPublicRoute = publicRoutePatterns.some((pattern) =>
+    pattern.test(path)
+  );
+
+  const token = req.headers.get("Authorization")?.split(" ")[1];
 
   const verifiedToken =
     token &&
