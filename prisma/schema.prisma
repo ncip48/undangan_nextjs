@@ -48,3 +48,77 @@ model Template {
 
   @@map("templates")
 }
+
+model Purchase {
+  id        String   @id @default(uuid())
+  name      String
+  total     Int
+  wedding   Wedding?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("purchases")
+}
+
+model Wedding {
+  id                   String    @id @default(uuid())
+  purchase             Purchase  @relation(fields: [purchaseId], references: [id])
+  purchaseId           String    @unique
+  username             String
+  nama_mempelai_wanita String
+  putri_ke             String
+  nama_ortu_wanita     String
+  nama_mempelai_pria   String
+  putra_ke             String
+  nama_ortu_pria       String
+  tanggal_akad         DateTime  @db.Date
+  jam_akad             String?
+  tanggal_resepsi      DateTime  @db.Date
+  jam_resepsi          String?
+  alamat               String
+  link_google_maps     String
+  gift                 Gift[]
+  gallery              Gallery[]
+  wish                 Wish[]
+  isExpired            Boolean?  @default(false)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@map("weddings")
+}
+
+model Gift {
+  id        String   @id @default(uuid())
+  wedding   Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId String
+  type      String
+  name      String
+  an        String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("gifts")
+}
+
+model Gallery {
+  id        String   @id @default(uuid())
+  wedding   Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("galleries")
+}
+
+model Wish {
+  id        String   @id @default(uuid())
+  wedding   Wedding  @relation(fields: [weddingId], references: [id])
+  weddingId String
+  name      String
+  wish      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("wishes")
+}

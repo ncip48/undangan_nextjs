@@ -16,7 +16,8 @@ const dissallowAdmin = ["/dashboard", "/scan", "/report", "/scan-out"];
 const dissallowKepsek = ["/scan", "/scan-out"];
 
 export default async function middleware(req: NextRequest) {
-  //API Configuration
+  
+  //API Middleware
   const path = req.nextUrl.pathname;
   const publicRoutes = ["/api/auth/login", "/api/auth/register"];
   const isPublicRoute = publicRoutes.includes(path);
@@ -35,6 +36,7 @@ export default async function middleware(req: NextRequest) {
       return ResponseApiFail("Unauthorized", 401);
     }
   }
+  //End API Middleware
 
   const getAuth = await getSession();
   const role = getAuth?.user?.profile?.role;
@@ -59,10 +61,10 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (getAuth && req.nextUrl.pathname == "/auth") {
-    if (role == 0) {
-      const absoluteURL = new URL("/scan", req.nextUrl.origin);
-      return NextResponse.redirect(absoluteURL.toString());
-    }
+    // if (role == 0) {
+    //   const absoluteURL = new URL("/scan", req.nextUrl.origin);
+    //   return NextResponse.redirect(absoluteURL.toString());
+    // }
     const absoluteURL = new URL("/dashboard", req.nextUrl.origin);
     return NextResponse.redirect(absoluteURL.toString());
   }
