@@ -1,5 +1,6 @@
 "use server";
 
+import { getWeddingDetail } from "@/services/actions/wedding";
 import { Metadata } from "next";
 
 // Define the type for the props
@@ -19,6 +20,10 @@ export async function generateMetadata({
 export default async function Page({ params, searchParams }: PageProps) {
   const { username } = params;
   const { to } = searchParams;
+
+  const res = await getWeddingDetail(username);
+
+  //   console.log(res);
 
   // You can use `username` and `to` in your component
   console.log("Username:", username);
