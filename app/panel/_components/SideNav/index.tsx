@@ -24,7 +24,7 @@ interface SidenavProps {
 
 export function Sidenav({
   brandImg = "/img/logo-ct.png",
-  brandName = "Absensi App",
+  brandName = "Undangan App",
   routes = [],
   stateSidebar = false,
   setOpenNav,
@@ -176,7 +176,7 @@ export function Sidenav({
           onClick={(e) => {
             logout();
           }}
-          className={`align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white active:bg-white/30 dark:text-gray-500 w-full flex items-center gap-4 px-4 capitalize`}
+          className={`align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white active:bg-white/30 dark:text-gray-500 w-full flex items-center gap-4 px-4 capitalize hover:bg-dark-800`}
         >
           <ArrowLeftStartOnRectangleIcon className="w-5 h-5 text-inherit" />
           <p className="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">

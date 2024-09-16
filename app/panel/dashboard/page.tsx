@@ -1,9 +1,7 @@
 "use client";
 
 import CardTotal from "@/components/CardTotal";
-import { Metadata } from "next";
 import React, { useState } from "react";
-import DashboardNavbar from "./_components/DashboardNavbar";
 import BarChart from "@/components/BarChart";
 import PieChart from "@/components/PieChart";
 import {

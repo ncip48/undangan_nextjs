@@ -52,7 +52,7 @@ function Index() {
           email: res.email,
         };
         await login(res.token, profile);
-        router.push("/dashboard");
+        router.push("/panel/dashboard");
       }
 
       setErrors([]);
@@ -64,13 +64,13 @@ function Index() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-dark-900">
+    <section className="dark bg-gray-50 dark:bg-dark-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
         <a
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          Absensi
+          Undangan
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-dark-800 dark:border-dark-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

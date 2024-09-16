@@ -7,7 +7,7 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/react-tailwindcss-select/dist/index.esm.js",
   ],
-  darkMode: "class",
+  darkMode: "selector",
   theme: {
     extend: {
       colors: {

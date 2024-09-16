@@ -7,7 +7,7 @@ import CardMain from "@/components/CardMain";
 import Input from "@/components/Input";
 import { z } from "zod";
 import Button from "@/components/Button";
-import { getProfileNoToken, updateProfile } from "@/services/actions/profile";
+import { getProfile, updateProfile } from "@/services/actions/profile";
 
 function Index() {
   const [loading, setLoading] = useState(true);
@@ -18,13 +18,11 @@ function Index() {
   const [profileData, setprofileData] = useState<any>({
     username: "",
     email: "",
-    name: "",
-    phoneNumber: "",
   });
 
   const getData = async () => {
     setLoading(true);
-    let res = await getProfileNoToken();
+    let res = await getProfile();
     setprofileData(res);
     // console.table(res);
     setLoading(false);
@@ -42,22 +40,18 @@ function Index() {
     try {
       const formData = new FormData(event.currentTarget);
 
-      const schema = z.object({
-        name: z.string().min(1, { message: "Kolom ini diperlukan" }),
-        username: z.string().min(1, { message: "Kolom ini diperlukan" }),
-        phoneNumber: z.string().min(1, { message: "Kolom ini diperlukan" }),
-      });
-
-      let response: any = schema.safeParse({
-        name: formData.get("name"),
-        username: formData.get("username"),
-        phoneNumber: formData.get("phoneNumber"),
-      });
-
       const password = formData.get("password");
-      if (password) {
-        response.data.password = formData.get("password");
-      }
+      const schema = z.object({
+        username: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        password: password
+          ? z.string().min(8, { message: "Minimal 8 karakter" })
+          : z.string(),
+      });
+
+      const response = schema.safeParse({
+        username: formData.get("username"),
+        password: formData.get("password"),
+      });
 
       // refine errors
       if (!response.success) {
@@ -89,8 +83,6 @@ function Index() {
     setprofileData({
       username: "",
       email: "",
-      name: "",
-      phoneNumber: "",
     });
     setErrors([]);
   };
@@ -139,20 +131,6 @@ function Index() {
               errors={errors}
               defaultValue={profileData?.email}
               readonly
-            />
-            <Input
-              label="Nama"
-              name="name"
-              placeholder="Budianto"
-              errors={errors}
-              defaultValue={profileData?.name}
-            />
-            <Input
-              label="No HP"
-              name="phoneNumber"
-              placeholder="081111111111"
-              errors={errors}
-              defaultValue={profileData?.phoneNumber}
             />
             <Input
               label="Password"

@@ -51,20 +51,6 @@ export default async function middleware(req: NextRequest) {
   const getAuth = await getSession();
   const role = getAuth?.user?.profile?.role;
 
-  if (req.nextUrl.pathname == "/") {
-    if (!getAuth) {
-      const absoluteURL = new URL("/auth", req.nextUrl.origin);
-      return NextResponse.redirect(absoluteURL.toString());
-    } else {
-      // if (role == 0) {
-      //   const absoluteURL = new URL("/scan", req.nextUrl.origin);
-      //   return NextResponse.redirect(absoluteURL.toString());
-      // }
-      const absoluteURL = new URL("/dashboard", req.nextUrl.origin);
-      return NextResponse.redirect(absoluteURL.toString());
-    }
-  }
-
   if (!getAuth && protectedRoutes.includes(req.nextUrl.pathname)) {
     const absoluteURL = new URL("/auth", req.nextUrl.origin);
     return NextResponse.redirect(absoluteURL.toString());
@@ -75,7 +61,7 @@ export default async function middleware(req: NextRequest) {
     //   const absoluteURL = new URL("/scan", req.nextUrl.origin);
     //   return NextResponse.redirect(absoluteURL.toString());
     // }
-    const absoluteURL = new URL("/dashboard", req.nextUrl.origin);
+    const absoluteURL = new URL("/panel/dashboard", req.nextUrl.origin);
     return NextResponse.redirect(absoluteURL.toString());
   }
 

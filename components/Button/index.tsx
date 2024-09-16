@@ -23,7 +23,7 @@ function Button({
       type={formSubmit ? "submit" : "button"}
       className={`text-white bg-${bg}-600 hover:bg-${bg}-700 focus:ring-4 focus:outline-none focus:ring-${bg}-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ${
         bg
-          ? `dark:bg-${bg}-800`
+          ? `dark:bg-${bg}-800 bg-${bg}-600`
           : "dark:bg-dark-900 dark:hover:bg-dark-700 dark:focus:ring-dark-800"
       } ${block ? "w-full" : ""}`}
     >

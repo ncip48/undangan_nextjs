@@ -11,6 +11,10 @@ import {
   InformationCircleIcon,
   Cog6ToothIcon,
   EllipsisHorizontalIcon,
+  CreditCardIcon,
+  CakeIcon,
+  UserIcon,
+  ChartBarIcon,
 } from "@heroicons/react/24/solid";
 import DashboardNavbar from "./_components/DashboardNavbar";
 import useEffectAfterMount from "@/utils/useEffectAfterMount";
@@ -31,23 +35,37 @@ export default function DashboardLayout({
     {
       icon: <HomeIcon {...icon} />,
       name: "dashboard",
-      path: "/dashboard",
+      path: "/panel/dashboard",
       active: "Home",
       role: [0, 1],
     },
     {
-      icon: <UserCircleIcon {...icon} />,
-      name: "Siswa",
-      path: "/siswa",
-      active: "Siswa",
+      icon: <DocumentIcon {...icon} />,
+      name: "Template",
+      path: "/panel/template",
+      active: "Template",
       role: [0],
     },
     {
-      icon: <DocumentIcon {...icon} />,
-      name: "report",
-      path: "/report",
-      active: "Report",
-      role: [1],
+      icon: <CreditCardIcon {...icon} />,
+      name: "Transaksi",
+      path: "/panel/transaksi",
+      active: "Transaksi",
+      role: [0],
+    },
+    {
+      icon: <CakeIcon {...icon} />,
+      name: "Undangan",
+      path: "/panel/undangan",
+      active: "Undangan",
+      role: [0],
+    },
+    {
+      icon: <ChartBarIcon {...icon} />,
+      name: "Laporan",
+      path: "/panel/laporan",
+      active: "Laporan",
+      role: [0],
       childs: [
         {
           icon: <EllipsisHorizontalIcon {...icon} />,
@@ -71,6 +89,13 @@ export default function DashboardLayout({
           role: [1],
         },
       ],
+    },
+    {
+      icon: <UserIcon {...icon} />,
+      name: "User",
+      path: "/panel/user",
+      active: "User",
+      role: [0],
     },
   ];
 
@@ -120,7 +145,7 @@ export default function DashboardLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-900">
+    <div className="dark min-h-screen bg-gray-50 dark:bg-dark-900">
       <Sidenav
         setOpenNav={() => setOpenSidenav(!openSidenav)}
         routes={routes}

@@ -1,5 +1,8 @@
+"use server";
+
 import { logout } from "@/app/lib";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 export async function getWeddingDetail(username: string) {
   try {
@@ -12,20 +15,16 @@ export async function getWeddingDetail(username: string) {
       }
     );
     const result = response.data;
-    console.log(result);
+    // console.log(result);
     if (!result.success) {
-      return null;
+      return redirect("/");
     } else {
       return result.data;
     }
   } catch (error: any) {
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      if (error.response.status === 401) {
-        await logout();
-        return;
+      if (error.response.status === 404) {
+        return redirect("/");
       }
     }
     console.log(error.message);

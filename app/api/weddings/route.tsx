@@ -7,9 +7,11 @@ interface WeddingInterface {
   purchaseId: string;
   username: string;
   nama_mempelai_wanita: string;
+  singkatan_wanita?: string;
   putri_ke: string;
   nama_ortu_wanita: string;
   nama_mempelai_pria: string;
+  singkatan_pria?: string;
   putra_ke: string;
   nama_ortu_pria: string;
   tanggal_akad: string;
@@ -53,9 +55,11 @@ export async function POST(request: NextRequest) {
       purchaseId,
       username,
       nama_mempelai_wanita,
+      singkatan_wanita,
       putri_ke,
       nama_ortu_wanita,
       nama_mempelai_pria,
+      singkatan_pria,
       putra_ke,
       nama_ortu_pria,
       tanggal_akad,
@@ -71,9 +75,11 @@ export async function POST(request: NextRequest) {
         purchaseId,
         username,
         nama_mempelai_wanita,
+        singkatan_wanita,
         putri_ke,
         nama_ortu_wanita,
         nama_mempelai_pria,
+        singkatan_pria,
         putra_ke,
         nama_ortu_pria,
         tanggal_akad: new Date(tanggal_akad),
@@ -98,9 +104,11 @@ export async function PUT(request: NextRequest) {
       purchaseId,
       username,
       nama_mempelai_wanita,
+      singkatan_wanita,
       putri_ke,
       nama_ortu_wanita,
       nama_mempelai_pria,
+      singkatan_pria,
       putra_ke,
       nama_ortu_pria,
       tanggal_akad,
@@ -115,9 +123,11 @@ export async function PUT(request: NextRequest) {
       purchaseId,
       username,
       nama_mempelai_wanita,
+      singkatan_wanita,
       putri_ke,
       nama_ortu_wanita,
       nama_mempelai_pria,
+      singkatan_pria,
       putra_ke,
       nama_ortu_pria,
       tanggal_akad: new Date(tanggal_akad),
