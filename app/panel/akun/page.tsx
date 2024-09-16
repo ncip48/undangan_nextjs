@@ -1,6 +1,5 @@
 "use client";
 
-import Table from "@/components/Table";
 import useEffectAfterMount from "@/utils/useEffectAfterMount";
 import React, { FormEvent, useRef, useState } from "react";
 import CardMain from "@/components/CardMain";
