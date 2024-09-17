@@ -13,6 +13,13 @@ import {
   getUsers,
   updateUser,
 } from "@/services/actions/user";
+import {
+  createTransaction,
+  deleteTransaction,
+  getTransactions,
+  updateTransaction,
+} from "@/services/actions/transaksi";
+import { formatRupiah } from "@/lib/currency";
 
 function Index() {
   const [datas, setDatas] = useState([]);
@@ -26,19 +33,16 @@ function Index() {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editData, setEditData] = useState<any>({
     id: null,
-    nis: "",
-    nisn: "",
     name: "",
-    grade: "",
-    sex: "",
-    kelas: "",
+    total: "",
   });
 
   const getData = async () => {
     setLoading(true);
-    let res = await getUsers();
+    let res = await getTransactions();
     res?.map((item: any) => {
-      item.role_str = item.role === 1 ? "User" : "Admin";
+      item.createdAt_s = new Date(item.createdAt).toLocaleDateString("id-ID");
+      item.total_s = formatRupiah(item.total);
     });
     setDatas(res);
     setLoading(false);
@@ -55,26 +59,14 @@ function Index() {
 
     try {
       const formData = new FormData(event.currentTarget);
-      const password = formData.get("password");
       const schema = z.object({
-        username: z.string().min(1, { message: "Kolom ini diperlukan" }),
-        email: z
-          .string()
-          .email({ message: "Email tidak valid" })
-          .min(1, { message: "Kolom ini diperlukan" }),
-        password: !isEdit
-          ? z.string().min(8, { message: "Minimal 8 karakter" })
-          : !password && !isEdit
-          ? z.string().min(8, { message: "Minimal 8 karakter" })
-          : z.string(),
-        role: z.string().min(1, { message: "Kolom ini harap dipilih" }),
+        name: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        total: z.string().min(1, { message: "Kolom ini diperlukan" }),
       });
 
       let response: any = schema.safeParse({
-        username: formData.get("username"),
-        email: formData.get("email"),
-        password: formData.get("password"),
-        role: formData.get("role"),
+        name: formData.get("name"),
+        total: formData.get("total"),
       });
 
       // refine errors
@@ -91,14 +83,14 @@ function Index() {
       let res;
       if (isEdit) {
         response.data.id = editData.id;
-        res = await updateUser({
+        res = await updateTransaction({
           ...response.data,
-          role: parseInt(response.data.role),
+          total: parseInt(response.data.total),
         });
       } else {
-        res = await createUser({
+        res = await createTransaction({
           ...response.data,
-          role: parseInt(response.data.role),
+          total: parseInt(response.data.total),
         });
       }
       if (res) {
@@ -119,7 +111,7 @@ function Index() {
     setIsLoading(true);
 
     try {
-      const res = await deleteUser(editData?.id);
+      const res = await deleteTransaction(editData?.id);
       // console.log("res del", res);
 
       if (res) {
@@ -137,12 +129,8 @@ function Index() {
     ref.current?.reset();
     setEditData({
       id: null,
-      nis: "",
-      nisn: "",
       name: "",
-      grade: "",
-      sex: "",
-      kelas: "",
+      total: "",
     });
     setIsEdit(false);
     setErrors([]);
@@ -150,12 +138,12 @@ function Index() {
 
   return (
     <>
-      <CardMain title="Daftar User" onAdd={() => setModal(true)} isAdmin>
+      <CardMain title="Daftar Transaksi" onAdd={() => setModal(true)} isAdmin>
         <Table
           items={datas}
           loading={loading}
-          heads={["Username", "Email", "Role"]}
-          keys={["username", "email", "role_str"]}
+          heads={["Nama", "Total", "Tanggal"]}
+          keys={["name", "total_s", "createdAt_s"]}
           onEdit={(val: any) => {
             setIsEdit(true);
             // console.log(val);
@@ -191,51 +179,19 @@ function Index() {
           loadingSave={isLoading}
         >
           <Input
-            label="Username"
-            name="username"
-            placeholder="siapaya"
+            label="Nama"
+            name="name"
+            placeholder="Didik"
             errors={errors}
-            defaultValue={editData?.username}
+            defaultValue={editData?.name}
           />
           <Input
-            label="Email"
-            name="email"
-            placeholder="kyud@mail.example"
+            label="Total"
+            name="total"
+            placeholder="250000"
             errors={errors}
-            defaultValue={editData?.email}
+            defaultValue={editData?.total}
           />
-          <Input
-            label="Password"
-            name="password"
-            placeholder="********"
-            errors={errors}
-            type="password"
-            info={
-              !isEdit ? "" : "Kosongkan jika tidak ingin mengganti password"
-            }
-          />
-          <div>
-            <label
-              htmlFor="role"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Hak Akses
-            </label>
-            <select
-              name="role"
-              defaultValue={editData?.role}
-              className="p-2.5 block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-dark-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-700 dark:focus:border-gray-700"
-            >
-              <option value="" disabled>
-                -- Pilih Role --
-              </option>
-              <option value="0">Admin</option>
-              <option value="1">User</option>
-            </select>
-            <div className="mt-1 text-xs text-red-500">
-              {errors.find((error: any) => error.for === "role")?.message}
-            </div>
-          </div>
         </Modal>
       </form>
 
