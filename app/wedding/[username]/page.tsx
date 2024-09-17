@@ -37,7 +37,7 @@ function Page({ params }: { params: { username: string } }) {
         {/* undangan cover */}
         <div
           className={`bg-green-50 ml-auto mr-auto absolute left-0 right-0 h-screen text-dark-900 p-4 transition-opacity ease-in-out delay-150 duration-300 ${
-            !open ? "opacity-100" : "opacity-0"
+            !open ? "opacity-100 z-50" : "opacity-0 z-0"
           }`}
         >
           <div className="h-full flex flex-col items-center justify-center">
@@ -60,7 +60,9 @@ function Page({ params }: { params: { username: string } }) {
         </div>
         {/* end undangan cover */}
         {/* undangan isi */}
-        <div className="bg-blue-100 p-4"></div>
+        <div className="bg-blue-100 p-4 relative">
+          <button className="p-10">Halooo</button>
+        </div>
         {/* end undangan isi */}
       </div>
     </div>

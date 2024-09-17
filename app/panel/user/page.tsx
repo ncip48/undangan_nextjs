@@ -61,7 +61,7 @@ function Index() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    console.log(event);
+    // console.log(event);
 
     try {
       const formData = new FormData(event.currentTarget);
@@ -130,7 +130,7 @@ function Index() {
 
     try {
       const res = await deleteUser(editData?.id);
-      console.log("res del", res);
+      // console.log("res del", res);
 
       if (res) {
         setModalDelete(false);
@@ -168,13 +168,13 @@ function Index() {
           keys={["username", "email", "role_str"]}
           onEdit={(val: any) => {
             setIsEdit(true);
-            console.log(val);
+            // console.log(val);
             setEditData(val);
             //set the form with current
             setModal(true);
           }}
           onDelete={(val: any) => {
-            console.log(val);
+            // console.log(val);
             setEditData(val);
             //set the form with current
             setModalDelete(true);

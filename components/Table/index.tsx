@@ -33,8 +33,8 @@ function Table({
   const nbPerPage = 10;
   const lastIndex = currentPage * nbPerPage;
   const startIndex = lastIndex - nbPerPage;
-  const numberOfPages = Math.ceil(items.length / nbPerPage);
-  const records = items.slice(startIndex, lastIndex);
+  const numberOfPages = Math.ceil(items?.length / nbPerPage);
+  const records = items?.slice(startIndex, lastIndex);
 
   function nextPage() {
     if (currentPage != numberOfPages) {
@@ -102,7 +102,7 @@ function Table({
                 <tr key={index}>
                   <td
                     className={`py-3 px-5 ${
-                      index === items.length - 1
+                      index === items?.length - 1
                         ? ""
                         : "border-b border-bluegray-50"
                     }`}
@@ -115,7 +115,7 @@ function Table({
                     return (
                       <td
                         className={`py-3 px-5 ${
-                          index === items.length - 1
+                          index === items?.length - 1
                             ? ""
                             : "border-b border-bluegray-50"
                         }`}
@@ -135,7 +135,7 @@ function Table({
                   {!noStatus && (
                     <td
                       className={`py-3 px-5 ${
-                        index === items.length - 1
+                        index === items?.length - 1
                           ? ""
                           : "border-b border-bluegray-50"
                       }`}
@@ -152,7 +152,7 @@ function Table({
                   {!noAction && (
                     <td
                       className={`py-3 px-5 ${
-                        index === items.length - 1
+                        index === items?.length - 1
                           ? ""
                           : "border-b border-bluegray-50"
                       }`}

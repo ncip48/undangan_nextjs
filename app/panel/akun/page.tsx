@@ -34,7 +34,7 @@ function Index() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    console.log(event);
+    // console.log(event);
 
     try {
       const formData = new FormData(event.currentTarget);

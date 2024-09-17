@@ -22,11 +22,13 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log(response);
+    // console.log(response);
     if (!response.data.success) {
       toast.error(response.data.message);
     } else {
-      toast.success(response.data.message);
+      if (!response.data.message.includes("loaded")) {
+        toast.success(response.data.message);
+      }
     }
     return response.data;
   },
