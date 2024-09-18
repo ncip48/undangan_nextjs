@@ -37,7 +37,7 @@ export default function DashboardLayout({
       name: "dashboard",
       path: "/panel/dashboard",
       active: "Home",
-      role: [0, 1],
+      role: [0, 1, 2],
     },
     {
       icon: <DocumentIcon {...icon} />,
@@ -51,14 +51,14 @@ export default function DashboardLayout({
       name: "Transaksi",
       path: "/panel/transaksi",
       active: "Transaksi",
-      role: [0],
+      role: [0, 2],
     },
     {
       icon: <CakeIcon {...icon} />,
       name: "Undangan",
       path: "/panel/undangan",
       active: "Undangan",
-      role: [0],
+      role: [0, 2],
     },
     {
       icon: <ChartBarIcon {...icon} />,

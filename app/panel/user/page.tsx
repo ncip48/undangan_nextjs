@@ -13,6 +13,7 @@ import {
   getUsers,
   updateUser,
 } from "@/services/actions/user";
+import Select from "@/components/Select/input";
 
 function Index() {
   const [datas, setDatas] = useState([]);
@@ -38,7 +39,8 @@ function Index() {
     setLoading(true);
     let res = await getUsers();
     res?.map((item: any) => {
-      item.role_str = item.role === 1 ? "User" : "Admin";
+      item.role_str =
+        item.role === 1 ? "User" : item.role === 2 ? "Marketing" : "Admin";
     });
     setDatas(res);
     setLoading(false);
@@ -215,28 +217,25 @@ function Index() {
               !isEdit ? "" : "Kosongkan jika tidak ingin mengganti password"
             }
           />
-          <div>
-            <label
-              htmlFor="role"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Hak Akses
-            </label>
-            <select
-              name="role"
-              defaultValue={editData?.role}
-              className="p-2.5 block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-dark-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-700 dark:focus:border-gray-700"
-            >
-              <option value="" disabled>
-                -- Pilih Role --
-              </option>
-              <option value="0">Admin</option>
-              <option value="1">User</option>
-            </select>
-            <div className="mt-1 text-xs text-red-500">
-              {errors.find((error: any) => error.for === "role")?.message}
-            </div>
-          </div>
+          <Select
+            name="role"
+            defaultValue={editData?.role}
+            label="Hak Akses"
+            items={[
+              {
+                value: "0",
+                label: "Admin",
+              },
+              {
+                value: "1",
+                label: "User",
+              },
+              {
+                value: "2",
+                label: "Marketing",
+              },
+            ]}
+          />
         </Modal>
       </form>
 
