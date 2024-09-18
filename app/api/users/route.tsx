@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
         email,
         password: passwordHash,
         role,
+        emailConfirmed: role == 2 ? false : true,
       },
     });
 

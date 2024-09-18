@@ -82,6 +82,7 @@ model Wedding {
   jam_resepsi          String?
   alamat               String
   link_google_maps     String
+  cover                String?
   gift                 Gift[]
   gallery              Gallery[]
   wish                 Wish[]

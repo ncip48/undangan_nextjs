@@ -2,13 +2,15 @@
 
 import { getWeddingDetail } from "@/services/actions/wedding";
 import useEffectAfterMount from "@/utils/useEffectAfterMount";
-import { Pacifico, Poppins } from "next/font/google";
+import { Italiana, Licorice, Pacifico, Poppins } from "next/font/google";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const poppins = Poppins({ weight: ["400", "700"], subsets: ["latin"] });
 const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
+const italiana = Italiana({ weight: ["400"], subsets: ["latin"] });
+const licorice = Licorice({ weight: ["400"], subsets: ["latin"] });
 // const myFont = localFont({ src: './my-font.woff2' })
 
 function Page({ params }: { params: { username: string } }) {
@@ -41,9 +43,13 @@ function Page({ params }: { params: { username: string } }) {
           }`}
         >
           <div className="h-full flex flex-col items-center justify-center">
-            <h1 className="text-center">The Wedding of</h1>
+            <h1
+              className={`${italiana.className} text-center uppercase text-2xl`}
+            >
+              The Wedding of
+            </h1>
             <p
-              className={`${pacifico.className} text-center mt-10 text-4xl text-green-500`}
+              className={`${licorice.className} text-center mt-10 text-6xl text-green-500`}
             >
               {data?.singkatan_wanita} & {data?.singkatan_pria}
             </p>

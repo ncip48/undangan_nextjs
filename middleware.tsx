@@ -23,6 +23,7 @@ export default async function middleware(req: NextRequest) {
   const publicRoutePatterns = [
     /^\/api\/auth\/login$/,
     /^\/api\/auth\/register$/,
+    /^\/api\/image$/,
     /^\/api\/weddings\/[^\/]+$/, // Regex pattern for /api/weddings/:username
   ];
 

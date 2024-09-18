@@ -21,6 +21,7 @@ interface WeddingInterface {
   jam_resepsi?: string;
   alamat: string;
   link_google_maps: string;
+  cover?: string;
 }
 
 export async function GET() {
@@ -70,6 +71,7 @@ export async function POST(request: NextRequest) {
       jam_resepsi,
       alamat,
       link_google_maps,
+      cover,
     }: WeddingInterface = await request.json();
 
     const wedding = await prisma.wedding.create({
@@ -91,6 +93,7 @@ export async function POST(request: NextRequest) {
         jam_resepsi,
         alamat,
         link_google_maps,
+        cover,
       },
     });
 
@@ -121,6 +124,7 @@ export async function PUT(request: NextRequest) {
       jam_resepsi,
       alamat,
       link_google_maps,
+      cover,
     }: WeddingInterface = await request.json();
 
     const updateData: any = {
@@ -142,6 +146,7 @@ export async function PUT(request: NextRequest) {
       alamat,
       link_google_maps,
       updatedAt: new Date(),
+      cover,
     };
 
     const wedding = await prisma.wedding.update({
