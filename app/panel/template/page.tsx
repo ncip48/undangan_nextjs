@@ -14,6 +14,20 @@ import {
   updateTransaction,
 } from "@/services/actions/transaksi";
 import { formatRupiah } from "@/lib/currency";
+import {
+  createTemplate,
+  deleteTemplate,
+  getTemplates,
+  updateTemplate,
+} from "@/services/actions/template";
+
+const MAX_FILE_SIZE = 500000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 
 function Index() {
   const [datas, setDatas] = useState([]);
@@ -28,16 +42,13 @@ function Index() {
   const [editData, setEditData] = useState<any>({
     id: null,
     name: "",
-    total: "",
+    path: "",
+    image: "",
   });
 
   const getData = async () => {
     setLoading(true);
-    let res = await getTransactions();
-    res?.map((item: any) => {
-      item.createdAt_s = new Date(item.createdAt).toLocaleDateString("id-ID");
-      item.total_s = formatRupiah(item.total);
-    });
+    let res = await getTemplates();
     setDatas(res);
     setLoading(false);
   };
@@ -53,14 +64,17 @@ function Index() {
 
     try {
       const formData = new FormData(event.currentTarget);
+      // console.log(formData.get("image"));
       const schema = z.object({
         name: z.string().min(1, { message: "Kolom ini diperlukan" }),
-        total: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        path: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        image: z.instanceof(File),
       });
 
       let response: any = schema.safeParse({
         name: formData.get("name"),
-        total: formData.get("total"),
+        path: formData.get("path"),
+        image: formData.get("image"),
       });
 
       // refine errors
@@ -77,15 +91,14 @@ function Index() {
       let res;
       if (isEdit) {
         response.data.id = editData.id;
-        res = await updateTransaction({
-          ...response.data,
-          total: parseInt(response.data.total),
-        });
+        const frmImg = formData.get("image") as File;
+        const image: string = frmImg.name;
+        if (image == "") {
+          delete response.data.image;
+        }
+        res = await updateTemplate({ ...response.data });
       } else {
-        res = await createTransaction({
-          ...response.data,
-          total: parseInt(response.data.total),
-        });
+        res = await createTemplate({ ...response.data });
       }
       if (res) {
         setModal(false);
@@ -105,7 +118,7 @@ function Index() {
     setIsLoading(true);
 
     try {
-      const res = await deleteTransaction(editData?.id);
+      const res = await deleteTemplate(editData?.id);
       // console.log("res del", res);
 
       if (res) {
@@ -125,7 +138,8 @@ function Index() {
     setEditData({
       id: null,
       name: "",
-      total: "",
+      path: "",
+      image: "",
     });
     setIsEdit(false);
     setErrors([]);
@@ -133,12 +147,12 @@ function Index() {
 
   return (
     <>
-      <CardMain title="Daftar Transaksi" onAdd={() => setModal(true)} isAdmin>
+      <CardMain title="Daftar Template" onAdd={() => setModal(true)} isAdmin>
         <Table
           items={datas}
           loading={loading}
-          heads={["Nama", "Total", "Tanggal"]}
-          keys={["name", "total_s", "createdAt_s"]}
+          heads={["Nama", "Pathname", "Preview"]}
+          keys={["name", "path", "image"]}
           onEdit={(val: any) => {
             setIsEdit(true);
             // console.log(val);
@@ -174,19 +188,33 @@ function Index() {
           loadingSave={isLoading}
         >
           <Input
-            label="Nama"
+            label="Nama Template"
             name="name"
-            placeholder="Didik"
+            placeholder="kyowo"
             errors={errors}
             defaultValue={editData?.name}
           />
           <Input
-            label="Total"
-            name="total"
-            placeholder="250000"
+            label="Path"
+            name="path"
+            placeholder="template2"
             errors={errors}
-            defaultValue={editData?.total}
+            defaultValue={editData?.path}
           />
+          <div className="mt-4">
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Gambar/Preview
+            </label>
+            <input
+              className="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-dark-700 dark:border-dark-600 dark:placeholder-dark-400"
+              id="image"
+              type="file"
+              name="image"
+            />
+            <div className="mt-1 text-xs text-red-500">
+              {errors.find((error: any) => error.for === "image")?.message}
+            </div>
+          </div>
         </Modal>
       </form>
 

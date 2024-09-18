@@ -14,7 +14,11 @@ interface TemplateInterface {
 
 export async function GET(request: NextRequest) {
   try {
-    const templates = await prisma.template.findMany();
+    const templates = await prisma.template.findMany({
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
     return ResponseApiSuccess("Templates loaded successfully", templates);
   } catch (error: any) {
     return ResponseApiFail(error.message);

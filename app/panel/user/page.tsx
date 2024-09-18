@@ -124,6 +124,7 @@ function Index() {
 
       if (res) {
         setModalDelete(false);
+        clearInput();
         getData();
       }
     } catch (error: any) {

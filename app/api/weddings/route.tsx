@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma";
 interface WeddingInterface {
   id?: string;
   purchaseId: string;
+  templateId: string;
   username: string;
   nama_mempelai_wanita: string;
   singkatan_wanita?: string;
@@ -53,6 +54,7 @@ export async function POST(request: NextRequest) {
   try {
     const {
       purchaseId,
+      templateId,
       username,
       nama_mempelai_wanita,
       singkatan_wanita,
@@ -73,6 +75,7 @@ export async function POST(request: NextRequest) {
     const wedding = await prisma.wedding.create({
       data: {
         purchaseId,
+        templateId,
         username,
         nama_mempelai_wanita,
         singkatan_wanita,
@@ -102,6 +105,7 @@ export async function PUT(request: NextRequest) {
     const {
       id,
       purchaseId,
+      templateId,
       username,
       nama_mempelai_wanita,
       singkatan_wanita,
@@ -121,6 +125,7 @@ export async function PUT(request: NextRequest) {
 
     const updateData: any = {
       purchaseId,
+      templateId,
       username,
       nama_mempelai_wanita,
       singkatan_wanita,
