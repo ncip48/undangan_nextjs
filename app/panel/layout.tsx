@@ -159,7 +159,9 @@ export default function DashboardLayout({
         active={findActiveRoute(routes, pathname)}
         className={!openSidenav ? "px-8" : "xl:pl-80 px-8"}
       />
-      <div className={`p-4 px-8 ${!openSidenav ? "" : "xl:ml-80 xl:pl-0"}`}>
+      <div
+        className={`p-4 px-8 pr-4 ${!openSidenav ? "" : "xl:ml-80 xl:pl-0"}`}
+      >
         {/* <Configurator /> */}
         {/* <IconButton
           size="lg"

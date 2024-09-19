@@ -190,7 +190,7 @@ function Index() {
             clearInput();
           }}
           showModal={modal}
-          label={isEdit ? "Edit Siswa" : "Tambah Siswa"}
+          label={isEdit ? "Edit User" : "Tambah User"}
           loadingSave={isLoading}
         >
           <Input

@@ -53,7 +53,7 @@ function Table({
       <table className="w-full min-w-[640px] table-auto">
         <thead>
           <tr>
-            <th className="border-b border-bluegray-50 py-3 px-5 text-left">
+            <th className="border-b border-gray-400 py-3 px-5 text-left">
               <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">
                 No
               </p>
@@ -61,7 +61,7 @@ function Table({
             {heads?.map((item: any, index: number) => {
               return (
                 <th
-                  className="border-b border-bluegray-50 py-3 px-5 text-left"
+                  className="border-b border-gray-400 py-3 px-5 text-left"
                   key={index}
                 >
                   <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">
@@ -71,7 +71,7 @@ function Table({
               );
             })}
             {!noAction && (
-              <th className="border-b border-bluegray-50 py-3 px-5 text-left">
+              <th className="border-b border-gray-400 py-3 px-5 text-left">
                 <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">
                   Aksi
                 </p>
@@ -104,7 +104,7 @@ function Table({
                     className={`py-3 px-5 ${
                       index === items?.length - 1
                         ? ""
-                        : "border-b border-bluegray-50"
+                        : "border-b border-gray-700"
                     }`}
                   >
                     <p className="block antialiased font-sans text-xs font-semibold text-blue-gray-600">
@@ -117,7 +117,7 @@ function Table({
                         className={`py-3 px-5 ${
                           index === items?.length - 1
                             ? ""
-                            : "border-b border-bluegray-50"
+                            : "border-b border-gray-700"
                         }`}
                         key={i}
                       >
@@ -137,7 +137,7 @@ function Table({
                       className={`py-3 px-5 ${
                         index === items?.length - 1
                           ? ""
-                          : "border-b border-bluegray-50"
+                          : "border-b border-gray-700"
                       }`}
                     >
                       <div
@@ -154,7 +154,7 @@ function Table({
                       className={`py-3 px-5 ${
                         index === items?.length - 1
                           ? ""
-                          : "border-b border-bluegray-50"
+                          : "border-b border-gray-700"
                       }`}
                     >
                       <a

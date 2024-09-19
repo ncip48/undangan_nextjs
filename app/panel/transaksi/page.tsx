@@ -170,7 +170,7 @@ function Index() {
             clearInput();
           }}
           showModal={modal}
-          label={isEdit ? "Edit Siswa" : "Tambah Siswa"}
+          label={isEdit ? "Edit Transaksi" : "Tambah Transaksi"}
           loadingSave={isLoading}
         >
           <Input
@@ -203,7 +203,7 @@ function Index() {
             clearInput();
           }}
           showModal={modalDelete}
-          label={"Hapus User"}
+          label={"Hapus Transaksi"}
           loadingSave={isLoading}
           deleteModal
         >
