@@ -50,9 +50,12 @@ const config: Config = {
         },
         primarydark: "#0c1a32",
         secondarydark: "#20304c",
+        tersierdark: "#112548",
         textgray: "#b5b5c3",
         inputborder: "#ffffff59",
         inputfocus: "#0080ff",
+        g1: "#0080ff",
+        g2: "#3399ff",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

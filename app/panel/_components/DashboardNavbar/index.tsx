@@ -16,7 +16,7 @@ function DashboardNavbar({
 }) {
   return (
     <nav
-      className={`w-auto bg-primarydark dark:bg-primarydark text-white shadow-none transition-all px-0 py-1 ${className}`}
+      className={`w-auto bg-primarydark dark:bg-primarydark text-white shadow-none transition-all px-0 py-2 ${className}`}
     >
       <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="flex items-center">
@@ -50,17 +50,17 @@ function DashboardNavbar({
           </div>
         </div>
         <div className="flex items-center">
-          <div className="mr-auto md:mr-4 md:w-56">
+          {/* <div className="mr-auto md:mr-4 md:w-56">
             <div className="relative w-full min-w-[200px] h-10">
               <input
                 className="peer w-full h-full bg-transparent text-gray-700 font-sans font-normal outline-none focus:outline-none disabled:bg-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-gray-900 border focus:border-2 text-sm px-3 py-2.5 rounded-[7px] border-gray-200 focus:border-gray-900 dark:bg-dark-800 dark:text-gray-400 dark:border-gray-700 dark:focus:border-gray-600"
                 placeholder="Search"
               />
             </div>
-          </div>
+          </div> */}
           <Link
             href="/panel/akun"
-            className="p-2 dark:bg-dark-800 rounded-full"
+            className="p-2 dark:bg-secondarydark rounded-full"
           >
             <UserIcon className="w-5 h-5 text-white" />
           </Link>

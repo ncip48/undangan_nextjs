@@ -99,8 +99,8 @@ export function Sidenav({
             onClick={() => toggleExpand(name)}
             className={`w-full flex items-center gap-4 px-4 py-3 rounded-lg font-sans font-bold text-center transition-all ${
               path === pathname
-                ? "bg-dark-800 text-white shadow-md shadow-blue-gray-500/10 hover:shadow-lg hover:shadow-blue-gray-500/20"
-                : "text-gray-500 hover:bg-dark-800"
+                ? "bg-gradient-to-r from-g1 to-g2 text-white shadow-md shadow-blue-gray-500/10 hover:shadow-lg hover:shadow-blue-gray-500/20"
+                : "text-gray-500 hover:bg-secondarydark"
             }`}
           >
             {icon}
@@ -133,8 +133,8 @@ export function Sidenav({
             <button
               className={`w-full flex items-center gap-4 px-4 py-3 rounded-lg font-sans font-bold text-center transition-all ${
                 path === pathname
-                  ? "bg-dark-800 text-white shadow-md shadow-blue-gray-500/10 hover:shadow-lg hover:shadow-blue-gray-500/20"
-                  : "text-gray-500 hover:bg-dark-800"
+                  ? "bg-gradient-to-r from-g1 to-g2 text-white shadow-md shadow-blue-gray-500/10 hover:shadow-lg hover:shadow-blue-gray-500/20"
+                  : "text-gray-500 hover:bg-secondarydark"
               }`}
             >
               {icon}
@@ -176,7 +176,7 @@ export function Sidenav({
           onClick={(e) => {
             logout();
           }}
-          className={`align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white active:bg-white/30 dark:text-gray-500 w-full flex items-center gap-4 px-4 capitalize hover:bg-dark-800`}
+          className={`align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white active:bg-white/30 dark:text-gray-500 w-full flex items-center gap-4 px-4 capitalize hover:bg-secondarydark`}
         >
           <ArrowLeftStartOnRectangleIcon className="w-5 h-5 text-inherit" />
           <p className="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">

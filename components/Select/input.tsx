@@ -26,14 +26,14 @@ function Select({
     <div className="mb-3">
       <label
         htmlFor={name}
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className="block mb-2 text-sm font-medium text-textgray dark:textgray"
       >
         {label}
       </label>
       <select
         name={name}
         defaultValue={defaultValue}
-        className="p-2.5 block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-dark-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-700 dark:focus:border-gray-700"
+        className="p-2.5 block w-full mt-1 rounded-md shadow-sm border border-inputborder focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-primarydark dark:placeholder-textgray dark:text-white dark:focus:ring-inputfocus dark:focus:border-inputfocus"
       >
         <option value="" disabled>
           -- Pilih {label} --

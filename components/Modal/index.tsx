@@ -61,8 +61,8 @@ function Modal({
             className="relative w-1/3 my-6 mx-auto max-w-3xl"
             variants={modalVariant}
           >
-            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none dark:bg-dark-900">
-              <div className="flex items-center justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none dark:bg-tersierdark">
+              <div className="flex items-center justify-between p-5 border-b border-solid border-gray-700 rounded-t">
                 <h5 className="text-xl font=semibold">{label}</h5>
                 <span
                   className="cursor-pointer bg-transparent border-0 text-white float-right"
@@ -74,7 +74,7 @@ function Modal({
                 </span>
               </div>
               <div className="relative p-6 flex-auto">{children}</div>
-              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+              <div className="flex items-center justify-end p-6 border-t border-solid border-gray-700 gap-2 rounded-b">
                 <Button
                   title={deleteModal ? "Batalkan" : "Tutup"}
                   onClick={closeModal}
