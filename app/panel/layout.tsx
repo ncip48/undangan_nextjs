@@ -61,6 +61,13 @@ export default function DashboardLayout({
       role: [0, 2],
     },
     {
+      icon: <CakeIcon {...icon} />,
+      name: "Undangan Saya",
+      path: "/panel/my-undangan",
+      active: "Undangan Saya",
+      role: [1],
+    },
+    {
       icon: <ChartBarIcon {...icon} />,
       name: "Laporan",
       path: "/panel/laporan",

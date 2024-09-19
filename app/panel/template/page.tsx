@@ -20,6 +20,7 @@ import {
   getTemplates,
   updateTemplate,
 } from "@/services/actions/template";
+import FileInput from "@/components/FileInput";
 
 const MAX_FILE_SIZE = 500000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -201,20 +202,7 @@ function Index() {
             errors={errors}
             defaultValue={editData?.path}
           />
-          <div className="mt-4">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Gambar/Preview
-            </label>
-            <input
-              className="p-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-dark-700 dark:border-dark-600 dark:placeholder-dark-400"
-              id="image"
-              type="file"
-              name="image"
-            />
-            <div className="mt-1 text-xs text-red-500">
-              {errors.find((error: any) => error.for === "image")?.message}
-            </div>
-          </div>
+          <FileInput label="Gambar/Preview" name="image" errors={errors} />
         </Modal>
       </form>
 
