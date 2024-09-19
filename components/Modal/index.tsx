@@ -78,6 +78,7 @@ function Modal({
                 <Button
                   title={deleteModal ? "Batalkan" : "Tutup"}
                   onClick={closeModal}
+                  negative
                 />
                 <Button
                   title={deleteModal ? "Ya" : "Simpan"}

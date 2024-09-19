@@ -7,6 +7,7 @@ interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   formSubmit?: boolean;
   bg?: string;
+  negative?: boolean;
 }
 
 function Button({
@@ -16,15 +17,18 @@ function Button({
   onClick,
   formSubmit = false,
   bg,
+  negative = false,
 }: ButtonProps) {
   // console.log(bg);
   return (
     <button
       onClick={onClick}
       type={formSubmit ? "submit" : "button"}
-      className={`text-white focus:ring-0 bg-bluedark-500 hover:bg-bluedark-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-bluedark-500 dark:hover:bg-bluedark-600 ${
-        block ? "w-full" : ""
-      }`}
+      className={`transition duration-300 text-white focus:ring-0 bg-bluedark-500 hover:bg-bluedark-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center ${
+        negative
+          ? "dark:bg-[#ff3f3f] dark:hover:bg-[#ff0c0c]"
+          : "dark:bg-bluedark-500 dark:hover:bg-bluedark-600"
+      }  ${block ? "w-full" : ""}`}
     >
       {loading ? (
         <div role="status">

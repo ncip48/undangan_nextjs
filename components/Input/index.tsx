@@ -49,7 +49,7 @@ function Input({
           className={`rounded-lg focus-visible:ring-inputfocus bg-gray-50 text-gray-900 block w-full ${
             leftIcon ? "pl-0" : ""
           } ${
-            readonly ? "cursor-not-allowed" : ""
+            readonly ? "cursor-not-allowed dark:bg-inputborder" : ""
           } p-2.5 dark:bg-primarydark dark:placeholder-textgray dark:text-white dark:focus:ring-inputborder dark:focus:border-inputfocus dark:focus:ring-0`}
           placeholder={placeholder}
           autoFocus={autoFocus}
