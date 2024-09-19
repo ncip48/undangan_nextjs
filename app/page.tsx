@@ -7,7 +7,7 @@ import { z } from "zod";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { loginServices } from "@/services/actions/login";
-import { presentByNIS } from "@/services/actions/absent";
+// import { presentByNIS } from "@/services/actions/absent";
 import useEffectAfterMount from "@/utils/useEffectAfterMount";
 import { QrCodeIcon } from "@heroicons/react/24/solid";
 import { getSession } from "./lib";
@@ -45,7 +45,7 @@ function Index() {
         throw err;
       }
 
-      const res = await presentByNIS(response.data.nis);
+      // const res = await presentByNIS(response.data.nis);
 
       setErrors([]);
     } catch (error: any) {

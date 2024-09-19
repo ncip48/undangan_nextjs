@@ -64,7 +64,7 @@ function Index() {
   };
 
   return (
-    <section className="dark bg-gray-50 dark:bg-dark-900">
+    <section className="dark bg-primarydark dark:bg-primarydark">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
         <a
           href="#"
@@ -72,7 +72,7 @@ function Index() {
         >
           Undangan
         </a>
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-dark-800 dark:border-dark-700">
+        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-secondarydark dark:border-secondarydark">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Masuk ke akun Anda
@@ -91,27 +91,13 @@ function Index() {
                 placeholder="********"
                 type="password"
               />
-              <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <Button loading={isLoading} title="Sign In" formSubmit block />
+              <Button
+                loading={isLoading}
+                title="Sign In"
+                formSubmit
+                block
+                // bg="bluedark"
+              />
             </form>
           </div>
         </div>

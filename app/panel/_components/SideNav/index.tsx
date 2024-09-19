@@ -155,7 +155,7 @@ export function Sidenav({
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } fixed inset-0 z-50  h-[calc(100vh)] w-72  transition-transform duration-300 shadow-2xl dark:bg-dark-900`}
+      } fixed inset-0 z-50  h-[calc(100vh)] w-72  transition-transform duration-300 shadow-2xl dark:bg-primarydark`}
     >
       <div className={`relative`}>
         <div className="py-6 px-8 flex items-center justify-between">

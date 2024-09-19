@@ -32,11 +32,11 @@ function Input({
     <div className="mb-3">
       <label
         htmlFor={name}
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className="block mb-2 text-sm font-medium text-textgray dark:text-textgray"
       >
         {label}
       </label>
-      <div className="flex items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full dark:bg-dark-700 dark:border-dark-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div className="flex items-center focus-visible:ring-0 bg-primarydark border border-inputborder rounded-lg focus:ring-inputborder focus:border-inputborder block w-full dark:bg-primarydark dark:border-inputborder dark:placeholder-textgray dark:text-white dark:focus:ring-inputfocus dark:focus:border-inputfocus">
         {leftIcon && <div className="mr-2.5 ml-2.5">{leftIcon}</div>}
         <input
           {...otherProps}
@@ -46,11 +46,11 @@ function Input({
           id={name}
           defaultValue={defaultValue}
           autoComplete="off"
-          className={`focus:outline-none bg-gray-50 text-gray-900 block w-full ${
+          className={`rounded-lg focus-visible:ring-inputfocus bg-gray-50 text-gray-900 block w-full ${
             leftIcon ? "pl-0" : ""
           } ${
             readonly ? "cursor-not-allowed" : ""
-          } p-2.5 dark:bg-dark-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-700 dark:focus:border-gray-700`}
+          } p-2.5 dark:bg-primarydark dark:placeholder-textgray dark:text-white dark:focus:ring-inputborder dark:focus:border-inputfocus dark:focus:ring-0`}
           placeholder={placeholder}
           autoFocus={autoFocus}
           onBlur={onBlur}

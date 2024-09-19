@@ -44,12 +44,12 @@ function Page({ params }: { params: { username: string } }) {
         >
           <div className="h-full flex flex-col items-center justify-center">
             <h1
-              className={`${italiana.className} text-center uppercase text-2xl`}
+              className={`${italiana.className} text-center uppercase text-[20px]`}
             >
               The Wedding of
             </h1>
             <p
-              className={`${licorice.className} text-center mt-10 text-6xl text-green-500`}
+              className={`${licorice.className} text-center mt-10 text-[60px] text-[#996A32]`}
             >
               {data?.singkatan_wanita} & {data?.singkatan_pria}
             </p>

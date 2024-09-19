@@ -145,7 +145,7 @@ export default function DashboardLayout({
   };
 
   return (
-    <div className="dark min-h-screen bg-gray-50 dark:bg-dark-900">
+    <div className="dark min-h-screen bg-secondarydark dark:bg-secondarydark">
       <Sidenav
         setOpenNav={() => setOpenSidenav(!openSidenav)}
         routes={routes}
@@ -154,11 +154,12 @@ export default function DashboardLayout({
           sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
         }
       />
+      <DashboardNavbar
+        onPressMenu={() => setOpenSidenav(!openSidenav)}
+        active={findActiveRoute(routes, pathname)}
+        className={!openSidenav ? "px-8" : "xl:pl-80 px-8"}
+      />
       <div className={`p-4 px-8 ${!openSidenav ? "" : "xl:ml-80 xl:pl-0"}`}>
-        <DashboardNavbar
-          onPressMenu={() => setOpenSidenav(!openSidenav)}
-          active={findActiveRoute(routes, pathname)}
-        />
         {/* <Configurator /> */}
         {/* <IconButton
           size="lg"

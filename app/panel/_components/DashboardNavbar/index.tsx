@@ -8,12 +8,16 @@ import React, { useState } from "react";
 function DashboardNavbar({
   active,
   onPressMenu,
+  className,
 }: {
   active: string;
   onPressMenu: () => void;
+  className: any;
 }) {
   return (
-    <nav className="w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">
+    <nav
+      className={`w-auto bg-primarydark dark:bg-primarydark text-white shadow-none transition-all px-0 py-1 ${className}`}
+    >
       <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="flex items-center">
           <Bars3Icon

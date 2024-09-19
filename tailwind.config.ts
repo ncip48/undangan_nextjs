@@ -37,6 +37,22 @@ const config: Config = {
         bluegray: {
           "50": "#ECEFF1",
         },
+        bluedark: {
+          "50": "#e6f4ff",
+          "100": "#b3e0ff",
+          "200": "#80c6ff",
+          "300": "#4db3ff",
+          "400": "#26a1ff",
+          "500": "#0080ff",
+          "600": "#0072e5",
+          "700": "#0063b2",
+          "800": "#00549e",
+        },
+        primarydark: "#0c1a32",
+        secondarydark: "#20304c",
+        textgray: "#b5b5c3",
+        inputborder: "#ffffff59",
+        inputfocus: "#0080ff",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
