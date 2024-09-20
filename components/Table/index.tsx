@@ -9,6 +9,7 @@ interface TableProps {
   noStatus?: boolean;
   onEdit?: any;
   onDelete?: any;
+  addRows?: any;
 }
 
 function Table({
@@ -20,6 +21,7 @@ function Table({
   noStatus = false,
   onEdit,
   onDelete,
+  addRows,
 }: TableProps) {
   const edit = (item: any) => {
     onEdit(item);
@@ -132,6 +134,17 @@ function Table({
                       </td>
                     );
                   })}
+                  {addRows ? (
+                    <td
+                      className={`py-3 px-5 ${
+                        index === items?.length - 1
+                          ? ""
+                          : "border-b border-gray-700"
+                      }`}
+                    >
+                      {addRows(item)}
+                    </td>
+                  ) : null}
                   {!noStatus && (
                     <td
                       className={`py-3 px-5 ${

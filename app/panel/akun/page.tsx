@@ -129,7 +129,6 @@ function Index() {
               placeholder="example@gmail.com"
               errors={errors}
               defaultValue={profileData?.email}
-              readonly
             />
             <Input
               label="Password"

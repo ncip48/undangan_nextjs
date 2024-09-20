@@ -4,9 +4,10 @@ interface FileInputProps {
   label: string;
   errors: { for: string; message: string }[];
   name: string;
+  info?: string;
 }
 
-function FileInput({ label, errors = [], name }: FileInputProps) {
+function FileInput({ label, errors = [], name, info }: FileInputProps) {
   return (
     <div className="mb-3">
       <label className="block mb-2 text-sm font-medium text-textgray dark:text-textgray">
@@ -21,6 +22,7 @@ function FileInput({ label, errors = [], name }: FileInputProps) {
       <div className="mt-1 text-xs text-red-500">
         {errors.find((error: any) => error.for === name)?.message}
       </div>
+      {info && <div className="mt-1 text-xs text-green-500">{info}</div>}
     </div>
   );
 }

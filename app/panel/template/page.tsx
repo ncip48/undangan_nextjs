@@ -153,7 +153,7 @@ function Index() {
           items={datas}
           loading={loading}
           heads={["Nama", "Pathname", "Preview"]}
-          keys={["name", "path", "image"]}
+          keys={["name", "path"]}
           onEdit={(val: any) => {
             setIsEdit(true);
             // console.log(val);
@@ -167,6 +167,12 @@ function Index() {
             //set the form with current
             setModalDelete(true);
           }}
+          addRows={(item: any) => (
+            <img
+              className="rounded h-auto max-w-[80px]"
+              src={`/assets/${item.image}`}
+            />
+          )}
           noStatus
         />
       </CardMain>
@@ -202,7 +208,12 @@ function Index() {
             errors={errors}
             defaultValue={editData?.path}
           />
-          <FileInput label="Gambar/Preview" name="image" errors={errors} />
+          <FileInput
+            label="Gambar/Preview"
+            name="image"
+            errors={errors}
+            info={isEdit ? "Abaikan jika tidak ingin mengganti gambar" : ""}
+          />
         </Modal>
       </form>
 
