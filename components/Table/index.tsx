@@ -10,6 +10,7 @@ interface TableProps {
   onEdit?: any;
   onDelete?: any;
   addRows?: any;
+  noEdit?: boolean;
 }
 
 function Table({
@@ -22,6 +23,7 @@ function Table({
   onEdit,
   onDelete,
   addRows,
+  noEdit = false,
 }: TableProps) {
   const edit = (item: any) => {
     onEdit(item);
@@ -110,7 +112,7 @@ function Table({
                     }`}
                   >
                     <p className="block antialiased font-sans text-xs font-semibold text-blue-gray-600">
-                      {index + 1}
+                      {index + 1 + nbPerPage * (currentPage - 1)}
                     </p>
                   </td>
                   {keys.map((it: any, i: number) => {
@@ -144,7 +146,9 @@ function Table({
                     >
                       {addRows(item)}
                     </td>
-                  ) : null}
+                  ) : (
+                    <></>
+                  )}
                   {!noStatus && (
                     <td
                       className={`py-3 px-5 ${
@@ -170,12 +174,14 @@ function Table({
                           : "border-b border-gray-700"
                       }`}
                     >
-                      <a
-                        onClick={() => edit(item)}
-                        className="block antialiased font-sans text-xs font-semibold text-blue-gray-600 cursor-pointer"
-                      >
-                        Edit
-                      </a>
+                      {!noEdit && (
+                        <a
+                          onClick={() => edit(item)}
+                          className="block antialiased font-sans text-xs font-semibold text-blue-gray-600 cursor-pointer"
+                        >
+                          Edit
+                        </a>
+                      )}
                       <a
                         onClick={() => del(item)}
                         className="block antialiased font-sans text-xs font-semibold text-blue-gray-600 cursor-pointer"

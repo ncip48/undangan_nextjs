@@ -7,20 +7,20 @@ interface WeddingInterface {
   purchaseId: string;
   templateId: string;
   username: string;
-  nama_mempelai_wanita: string;
+  nama_mempelai_wanita?: string;
   singkatan_wanita?: string;
-  putri_ke: string;
-  nama_ortu_wanita: string;
-  nama_mempelai_pria: string;
+  putri_ke?: string;
+  nama_ortu_wanita?: string;
+  nama_mempelai_pria?: string;
   singkatan_pria?: string;
-  putra_ke: string;
-  nama_ortu_pria: string;
-  tanggal_akad: string;
+  putra_ke?: string;
+  nama_ortu_pria?: string;
+  tanggal_akad?: string;
   jam_akad?: string;
-  tanggal_resepsi: string;
+  tanggal_resepsi?: string;
   jam_resepsi?: string;
-  alamat: string;
-  link_google_maps: string;
+  alamat?: string;
+  link_google_maps?: string;
   cover?: string;
 }
 
@@ -53,47 +53,39 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const {
-      purchaseId,
-      templateId,
-      username,
-      nama_mempelai_wanita,
-      singkatan_wanita,
-      putri_ke,
-      nama_ortu_wanita,
-      nama_mempelai_pria,
-      singkatan_pria,
-      putra_ke,
-      nama_ortu_pria,
-      tanggal_akad,
-      jam_akad,
-      tanggal_resepsi,
-      jam_resepsi,
-      alamat,
-      link_google_maps,
-      cover,
-    }: WeddingInterface = await request.json();
+    const { purchaseId, templateId, username }: WeddingInterface =
+      await request.json();
+
+    const search = await prisma.wedding.findFirst({
+      where: {
+        username,
+      },
+    });
+
+    if (search) {
+      return ResponseApiFail("Username already taken", 501);
+    }
 
     const wedding = await prisma.wedding.create({
       data: {
         purchaseId,
         templateId,
         username,
-        nama_mempelai_wanita,
-        singkatan_wanita,
-        putri_ke,
-        nama_ortu_wanita,
-        nama_mempelai_pria,
-        singkatan_pria,
-        putra_ke,
-        nama_ortu_pria,
-        tanggal_akad: new Date(tanggal_akad),
-        jam_akad,
-        tanggal_resepsi: new Date(tanggal_resepsi),
-        jam_resepsi,
-        alamat,
-        link_google_maps,
-        cover,
+        nama_mempelai_wanita: "",
+        singkatan_wanita: "",
+        putri_ke: "",
+        nama_ortu_wanita: "",
+        nama_mempelai_pria: "",
+        singkatan_pria: "",
+        putra_ke: "",
+        nama_ortu_pria: "",
+        tanggal_akad: new Date(),
+        jam_akad: "",
+        tanggal_resepsi: new Date(),
+        jam_resepsi: "",
+        alamat: "",
+        link_google_maps: "",
+        cover: "",
       },
     });
 
@@ -139,9 +131,9 @@ export async function PUT(request: NextRequest) {
       singkatan_pria,
       putra_ke,
       nama_ortu_pria,
-      tanggal_akad: new Date(tanggal_akad),
+      tanggal_akad: new Date(tanggal_akad ?? ""),
       jam_akad,
-      tanggal_resepsi: new Date(tanggal_resepsi),
+      tanggal_resepsi: new Date(tanggal_resepsi ?? ""),
       jam_resepsi,
       alamat,
       link_google_maps,

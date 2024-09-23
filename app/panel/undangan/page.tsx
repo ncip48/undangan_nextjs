@@ -14,9 +14,19 @@ import {
   updateTransaction,
 } from "@/services/actions/transaksi";
 import { formatRupiah } from "@/lib/currency";
+import {
+  createWedding,
+  deleteWedding,
+  getWeddings,
+  updateWedding,
+} from "@/services/actions/undangan";
+import Select from "@/components/Select/input";
+import { getTemplates } from "@/services/actions/template";
 
 function Index() {
   const [datas, setDatas] = useState([]);
+  const [trxs, setDataTrxs] = useState([]);
+  const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
@@ -27,23 +37,55 @@ function Index() {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editData, setEditData] = useState<any>({
     id: null,
-    name: "",
-    total: "",
+    purchaseId: "",
+    templateId: "",
+    username: "",
   });
 
   const getData = async () => {
     setLoading(true);
-    let res = await getTransactions();
+    let res = await getWeddings();
     res?.map((item: any) => {
       item.createdAt_s = new Date(item.createdAt).toLocaleDateString("id-ID");
-      item.total_s = formatRupiah(item.total);
+      item.expiredDate = new Date(
+        new Date(item.createdAt).setMonth(
+          new Date(item.createdAt).getMonth() + 1
+        )
+      ).toLocaleDateString("id-ID");
+      item.isExpired_s = item.isExpired ? "Expired" : "Aktif";
     });
     setDatas(res);
     setLoading(false);
   };
 
+  const getDataTrx = async () => {
+    const res = await getTransactions();
+    const newRes: any = [];
+    res.map((item: any) => {
+      newRes.push({
+        label: item.name,
+        value: item.id,
+      });
+    });
+    setDataTrxs(newRes);
+  };
+
+  const getDataTemplate = async () => {
+    const res = await getTemplates();
+    const newRes: any = [];
+    res.map((item: any) => {
+      newRes.push({
+        label: item.name,
+        value: item.id,
+      });
+    });
+    setTemplates(newRes);
+  };
+
   useEffectAfterMount(() => {
     getData();
+    getDataTrx();
+    getDataTemplate();
   }, []);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -54,13 +96,15 @@ function Index() {
     try {
       const formData = new FormData(event.currentTarget);
       const schema = z.object({
-        name: z.string().min(1, { message: "Kolom ini diperlukan" }),
-        total: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        username: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        purchaseId: z.string().min(1, { message: "Kolom ini diperlukan" }),
+        templateId: z.string().min(1, { message: "Kolom ini diperlukan" }),
       });
 
       let response: any = schema.safeParse({
-        name: formData.get("name"),
-        total: formData.get("total"),
+        username: formData.get("username"),
+        purchaseId: formData.get("purchaseId"),
+        templateId: formData.get("templateId"),
       });
 
       // refine errors
@@ -77,14 +121,12 @@ function Index() {
       let res;
       if (isEdit) {
         response.data.id = editData.id;
-        res = await updateTransaction({
+        res = await updateWedding({
           ...response.data,
-          total: parseInt(response.data.total),
         });
       } else {
-        res = await createTransaction({
+        res = await createWedding({
           ...response.data,
-          total: parseInt(response.data.total),
         });
       }
       if (res) {
@@ -105,7 +147,7 @@ function Index() {
     setIsLoading(true);
 
     try {
-      const res = await deleteTransaction(editData?.id);
+      const res = await deleteWedding(editData?.id);
       // console.log("res del", res);
 
       if (res) {
@@ -124,8 +166,9 @@ function Index() {
     ref.current?.reset();
     setEditData({
       id: null,
-      name: "",
-      total: "",
+      purchaseId: "",
+      templateId: "",
+      username: "",
     });
     setIsEdit(false);
     setErrors([]);
@@ -137,8 +180,8 @@ function Index() {
         <Table
           items={datas}
           loading={loading}
-          heads={["Nama", "Total", "Tanggal"]}
-          keys={["name", "total_s", "createdAt_s"]}
+          heads={["Username", "Status", "Tanggal Dibuat", "Tanggal Expired"]}
+          keys={["username", "isExpired_s", "createdAt_s", "expiredDate"]}
           onEdit={(val: any) => {
             setIsEdit(true);
             // console.log(val);
@@ -153,6 +196,7 @@ function Index() {
             setModalDelete(true);
           }}
           noStatus
+          noEdit
         />
       </CardMain>
 
@@ -161,7 +205,6 @@ function Index() {
         className="space-y-4 md:space-y-6"
         onSubmit={async (e) => {
           await onSubmit(e);
-          ref.current?.reset();
         }}
       >
         <Modal
@@ -170,22 +213,27 @@ function Index() {
             clearInput();
           }}
           showModal={modal}
-          label={isEdit ? "Edit Siswa" : "Tambah Siswa"}
+          label={isEdit ? "Edit Undangan" : "Tambah Undangan"}
           loadingSave={isLoading}
         >
-          <Input
-            label="Nama"
-            name="name"
-            placeholder="Didik"
-            errors={errors}
-            defaultValue={editData?.name}
+          <Select
+            label="Transaksi"
+            name="purchaseId"
+            items={trxs}
+            defaultValue={editData?.purchaseId}
+          />
+          <Select
+            label="Template"
+            name="templateId"
+            items={templates}
+            defaultValue={editData?.templateId}
           />
           <Input
-            label="Total"
-            name="total"
-            placeholder="250000"
+            label="Username"
+            name="username"
+            placeholder="dwidanherly"
             errors={errors}
-            defaultValue={editData?.total}
+            defaultValue={editData?.username}
           />
         </Modal>
       </form>
@@ -203,7 +251,7 @@ function Index() {
             clearInput();
           }}
           showModal={modalDelete}
-          label={"Hapus User"}
+          label={"Hapus Undangan"}
           loadingSave={isLoading}
           deleteModal
         >

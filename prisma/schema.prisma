@@ -68,20 +68,20 @@ model Wedding {
   template             Template  @relation(fields: [templateId], references: [id])
   templateId           String    @unique
   username             String    @unique
-  nama_mempelai_wanita String
+  nama_mempelai_wanita String?
   singkatan_wanita     String?
-  putri_ke             String
-  nama_ortu_wanita     String
-  nama_mempelai_pria   String
+  putri_ke             String?
+  nama_ortu_wanita     String?
+  nama_mempelai_pria   String?
   singkatan_pria       String?
-  putra_ke             String
-  nama_ortu_pria       String
-  tanggal_akad         DateTime  @db.Date
+  putra_ke             String?
+  nama_ortu_pria       String?
+  tanggal_akad         DateTime? @db.Date
   jam_akad             String?
-  tanggal_resepsi      DateTime  @db.Date
+  tanggal_resepsi      DateTime? @db.Date
   jam_resepsi          String?
-  alamat               String
-  link_google_maps     String
+  alamat               String?
+  link_google_maps     String?
   cover                String?
   gift                 Gift[]
   gallery              Gallery[]

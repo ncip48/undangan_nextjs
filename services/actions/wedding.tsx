@@ -1,6 +1,5 @@
 "use server";
 
-import { logout } from "@/app/lib";
 import axios from "axios";
 import { redirect } from "next/navigation";
 
