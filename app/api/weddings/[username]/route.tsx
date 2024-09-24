@@ -13,6 +13,7 @@ export async function GET(
         username,
       },
       include: {
+        template: true,
         gift: {
           orderBy: {
             createdAt: "asc",
