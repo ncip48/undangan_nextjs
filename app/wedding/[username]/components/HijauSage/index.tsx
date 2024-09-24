@@ -1,5 +1,5 @@
 import {
-  CalendarIcon,
+  CalendarDaysIcon,
   GiftIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
@@ -63,10 +63,12 @@ const MenuButton = ({
   name,
   icon,
   onClick,
+  className,
 }: {
   name: string;
   icon: any;
   onClick: any;
+  className?: string;
 }) => {
   return (
     <div
@@ -74,7 +76,7 @@ const MenuButton = ({
       className="flex flex-col items-center cursor-pointer"
     >
       {icon}
-      <p className="text-[7px]">{name}</p>
+      <p className={`${className} text-[7px]`}>{name}</p>
     </div>
   );
 };
@@ -128,9 +130,39 @@ function HijauSage({
   const refMempelai: any = useRef(null);
   const refAcara: any = useRef(null);
   const refGift: any = useRef(null);
-  const scrollToMempelai = () => refMempelai.current.scrollIntoView();
-  const scrollToAcara = () => refAcara.current.scrollIntoView();
-  const scrollToGift = () => refGift.current.scrollIntoView();
+
+  const [activeSection, setActiveSection] = useState(0);
+
+  const scrollToMempelai = () =>
+    refMempelai.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToAcara = () =>
+    refAcara.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToGift = () =>
+    refGift.current.scrollIntoView({ behavior: "smooth" });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!refMempelai.current || !refAcara.current || !refGift.current) return; // Check if refs are not null
+
+      const mempelaiPosition = refMempelai.current.getBoundingClientRect();
+      const acaraPosition = refAcara.current.getBoundingClientRect();
+      const giftPosition = refGift.current.getBoundingClientRect();
+
+      const windowHeight = window.innerHeight;
+
+      if (mempelaiPosition.top >= 0 && mempelaiPosition.top < windowHeight) {
+        setActiveSection(0);
+      } else if (acaraPosition.top >= 0 && acaraPosition.top < windowHeight) {
+        setActiveSection(1);
+      } else if (giftPosition.top >= 0 && giftPosition.top < windowHeight) {
+        setActiveSection(2);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const [counter, setCounter] = useState({
     hari: 0,
     jam: 0,
@@ -269,7 +301,7 @@ function HijauSage({
           ) : (
             // {/* end undangan cover */}
             // {/* undangan isi */}
-            <div className="bg-white relative">
+            <div className="relative bg-white">
               <div ref={refMempelai}>
                 {open && (
                   <>
@@ -318,17 +350,50 @@ function HijauSage({
                       <MenuButton
                         name="Mempelai"
                         onClick={scrollToMempelai}
-                        icon={<UserGroupIcon className="h-6" />}
+                        icon={
+                          <UserGroupIcon
+                            className={`h-6 ${
+                              activeSection === 0
+                                ? "text-[#336546]"
+                                : "text-white"
+                            }`}
+                          />
+                        }
+                        className={`${
+                          activeSection === 0 ? "text-[#336546]" : "text-white"
+                        }`}
                       />
                       <MenuButton
                         name="Acara"
                         onClick={scrollToAcara}
-                        icon={<CalendarIcon className="h-6" />}
+                        icon={
+                          <CalendarDaysIcon
+                            className={`h-6 ${
+                              activeSection === 1
+                                ? "text-[#336546]"
+                                : "text-white"
+                            }`}
+                          />
+                        }
+                        className={`${
+                          activeSection === 1 ? "text-[#336546]" : "text-white"
+                        }`}
                       />
                       <MenuButton
                         name="Gift"
                         onClick={scrollToGift}
-                        icon={<GiftIcon className="h-6" />}
+                        icon={
+                          <GiftIcon
+                            className={`h-6 ${
+                              activeSection === 2
+                                ? "text-[#336546]"
+                                : "text-white"
+                            }`}
+                          />
+                        }
+                        className={`${
+                          activeSection === 2 ? "text-[#336546]" : "text-white"
+                        }`}
                       />
                     </div>
                     {/* end fab */}
@@ -393,6 +458,10 @@ function HijauSage({
                   <Countdown number={counter.detik} label="Detik" />
                 </div>
               </div>
+              <div
+                ref={refGift}
+                // className="bg-white relative mt-[221px] pb-[219px]"
+              ></div>
             </div>
           )
           // {/* end undangan isi */}
