@@ -131,6 +131,12 @@ function HijauSage({
   const scrollToMempelai = () => refMempelai.current.scrollIntoView();
   const scrollToAcara = () => refAcara.current.scrollIntoView();
   const scrollToGift = () => refGift.current.scrollIntoView();
+  const [counter, setCounter] = useState({
+    hari: 0,
+    jam: 0,
+    menit: 0,
+    detik: 0,
+  });
 
   const [open, setOpen] = useState(false);
 
@@ -138,6 +144,28 @@ function HijauSage({
     AOS.init({
       offset: 100,
     });
+
+    //count down with timer data.tanggal_akad then setCounter
+    const countDownDate = new Date(data.tanggal_akad).getTime();
+    const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      setCounter({
+        hari: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        jam: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        menit: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        detik: Math.floor((distance % (1000 * 60)) / 1000),
+      });
+      if (distance < 0) {
+        clearInterval(x);
+        setCounter({
+          hari: 0,
+          jam: 0,
+          menit: 0,
+          detik: 0,
+        });
+      }
+    }, 1000);
   }, []);
 
   return (
@@ -359,10 +387,10 @@ function HijauSage({
                   className="flex gap-5 justify-center mt-[62px]"
                   data-aos="zoom-in"
                 >
-                  <Countdown number={10} label="Hari" />
-                  <Countdown number={6} label="Jam" />
-                  <Countdown number={55} label="Menit" />
-                  <Countdown number={33} label="Detik" />
+                  <Countdown number={counter.hari} label="Hari" />
+                  <Countdown number={counter.jam} label="Jam" />
+                  <Countdown number={counter.menit} label="Menit" />
+                  <Countdown number={counter.detik} label="Detik" />
                 </div>
               </div>
             </div>
