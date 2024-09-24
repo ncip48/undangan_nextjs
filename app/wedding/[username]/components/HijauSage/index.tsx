@@ -156,42 +156,48 @@ function HijauSage({
                     alt="daun1"
                     height={122}
                     width={122}
-                    className="absolute z-[99] right-0 animate-zoomInTopRight"
+                    className="absolute z-[99] right-0"
+                    data-aos="fade-down-left"
                   />
                   <Image
                     src="/assets/templates/t1/daun2.png"
                     alt="daun2"
                     height={180}
                     width={180}
-                    className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px] animate-zoomin"
+                    className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px]"
+                    data-aos="zoom-in"
                   />
                   <Image
                     src="/assets/templates/t1/daun3.png"
                     alt="daun3"
                     height={141}
                     width={83}
-                    className="absolute z-[99] left-0 top-[162px] animate-zoomInRight"
+                    className="absolute z-[99] left-0 top-[162px]"
+                    data-aos="zoom-in-right"
                   />
                   <Image
                     src="/assets/templates/t1/daun4.png"
                     alt="daun4"
                     height={129}
                     width={63}
-                    className="absolute z-[99] right-0 top-[287px] animate-zoomInLeft"
+                    className="absolute z-[99] right-0 top-[287px]"
+                    data-aos="zoom-in-left"
                   />
                   <Image
                     src="/assets/templates/t1/daun5.png"
                     alt="daun5"
                     height={150}
                     width={90}
-                    className="absolute z-[99] left-0 bottom-0 animate-zoomInBotoomLeft"
+                    className="absolute z-[99] left-0 bottom-0"
+                    data-aos="fade-up-right"
                   />
                   <Image
                     src="/assets/templates/t1/daun6.png"
                     alt="daun6"
                     height={150}
                     width={90}
-                    className="absolute z-[99] right-0 bottom-0 animate-zoomInBotoomRight"
+                    className="absolute z-[99] right-0 bottom-0"
+                    data-aos="fade-up-left"
                   />
                 </>
                 {/* end daun */}
@@ -201,7 +207,8 @@ function HijauSage({
                   The Wedding of
                 </h1>
                 <p
-                  className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32] animate-zoomin`}
+                  className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32]`}
+                  data-aos="zoom-in"
                 >
                   {data?.singkatan_wanita} & {data?.singkatan_pria}
                 </p>
@@ -209,10 +216,14 @@ function HijauSage({
                   alt="il"
                   width={387}
                   height={387}
-                  className="mt-10 animate-zoomin"
+                  className="mt-10"
+                  data-aos="zoom-in"
                   src="/assets/templates/t1/il.png"
                 />
-                <div className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5 animate-zoomin">
+                <div
+                  className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5"
+                  data-aos="zoom-in"
+                >
                   <p className="text-center mb-5">Kpd Bpk/Ibu/Saudara/i</p>
                   <p className="font-bold text-center">{receiver.to}</p>
                   <p className="font-bold text-center">{receiver.at}</p>
