@@ -134,14 +134,22 @@ const GiftCard = ({
   name: string;
   an?: string;
 }) => {
+  const imageUri = `/assets/bank/${type}.png`;
   return (
     <div
-      className="border border-[#996A32] p-5 rounded-2xl bg-white"
+      className="border border-[#996A32] p-4 rounded-2xl bg-white"
       data-aos="zoom-in"
     >
+      <Image
+        className="mx-auto mb-2"
+        src={imageUri}
+        alt="img"
+        width={type === "address" ? 48 : 103}
+        height={type === "address" ? 48 : 55}
+      />
       <p className="text-black text-center">{an}</p>
       <p className="text-black text-center font-semibold">{name}</p>
-      <button className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-4">
+      <button className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[12px]">
         Salin
         <DocumentDuplicateIcon className="h-5" />
       </button>
@@ -487,6 +495,40 @@ function HijauSage({
                   </div>
                 </div>
                 <div ref={refGift} className="bg-white relative">
+                  <>
+                    <Image
+                      src="/assets/templates/t1/daungift1.png"
+                      alt="daungift1"
+                      height={186}
+                      width={136}
+                      className="absolute z-[99] left-0 mt-0"
+                      data-aos="zoom-in-right"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daungift2.png"
+                      alt="daungift2"
+                      height={156}
+                      width={144}
+                      className="absolute z-[99] right-0 mt-[19rem]"
+                      data-aos="zoom-in-left"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daungift3.png"
+                      alt="daungift3"
+                      height={178}
+                      width={165}
+                      className="absolute z-[99] left-0 mt-[30rem]"
+                      data-aos="zoom-in-right"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daungiftbawah.png"
+                      alt="daungiftbawah"
+                      height={96}
+                      width={180}
+                      className="absolute z-[99] bottom-[-15px] left-0 right-0 ml-auto mr-auto"
+                      //   data-aos="zoom-in-up"
+                    />
+                  </>
                   <div className="h-screen flex flex-col justify-center rounded-full bg-[#d5c3ac] px-[45px]">
                     <h1
                       className={`${lobster.className} text-[48px] text-[#336546] text-center`}
@@ -495,13 +537,13 @@ function HijauSage({
                       Gift
                     </h1>
                     <p
-                      className={`${poppins.className} text-[12px] text-black text-center py-10`}
+                      className={`${poppins.className} text-[12px] text-black text-center py-6`}
                       data-aos="zoom-in"
                     >
                       Bagi yang berkeinginan memberikan tanda kasih, kami
                       menyediakan wedding gift dibawah ini:
                     </p>
-                    <div className="flex flex-col gap-10 px-[15px]">
+                    <div className="flex flex-col gap-8 px-[15px]">
                       {data.gift.map((item: Gift, index: number) => {
                         return (
                           <GiftCard
@@ -517,7 +559,7 @@ function HijauSage({
                       className={`${poppins.className} text-[12px] text-black text-center mb-2 mt-4`}
                       data-aos="zoom-in"
                     >
-                      Terima Kasih Atas kehadiran dan Doa restunya
+                      Terima Kasih <br /> Atas kehadiran dan Doa restunya
                     </p>
                     <p
                       className={`${poppins.className} text-[12px] text-black text-center mb-3`}
@@ -526,7 +568,7 @@ function HijauSage({
                       Kami yang Berbahagia, Keluarga Besar Kedua Mempelai
                     </p>
                     <p
-                      className={`${licorice.className} text-center text-[36px] text-[#996A32]`}
+                      className={`${licorice.className} text-center text-[36px] text-[#336546]`}
                       data-aos="zoom-in"
                     >
                       {data?.singkatan_wanita} & {data?.singkatan_pria}
