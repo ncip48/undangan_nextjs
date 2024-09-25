@@ -5,19 +5,21 @@ import useEffectAfterMount from "@/utils/useEffectAfterMount";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import HijauSage from "./components/HijauSage";
+import { WeddingInterface } from "@/interfaces/wedding";
 
 function Page({ params }: { params: { username: string } }) {
   const searchParams = useSearchParams();
   const { username } = params;
-  const to = searchParams.get("to");
-  const at = searchParams.get("at");
-  const [loading, setLoading] = useState(true);
+  const to: string = searchParams.get("to") || "";
+  const at: string = searchParams.get("at") || "";
+  const receiver = { at, to };
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<WeddingInterface>();
 
   //   const res = await getWeddingDetail(username);
   const getData = async () => {
-    const res = await getWeddingDetail(username);
+    const res: WeddingInterface = await getWeddingDetail(username);
 
     setData(res);
     document.title = `Pernikahan ${res?.singkatan_wanita} & ${res?.singkatan_pria}`;
@@ -54,7 +56,7 @@ function Page({ params }: { params: { username: string } }) {
   } else {
     switch (data?.template?.path) {
       case "hijausage":
-        return <HijauSage receiver={{ at, to }} data={data} />;
+        return <HijauSage receiver={receiver} data={data} />;
       default:
         break;
     }

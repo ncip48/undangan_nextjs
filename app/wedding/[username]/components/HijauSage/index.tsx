@@ -16,6 +16,7 @@ import AOS from "aos";
 
 // import aos styles
 import "aos/dist/aos.css";
+import { WeddingInterface } from "@/interfaces/wedding";
 
 const poppins = Poppins({ weight: ["400", "700"], subsets: ["latin"] });
 // const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
@@ -125,7 +126,7 @@ function HijauSage({
   data,
 }: {
   receiver: { at?: string; to?: string };
-  data: any;
+  data: WeddingInterface;
 }) {
   const refMempelai: any = useRef(null);
   const refAcara: any = useRef(null);
@@ -133,12 +134,9 @@ function HijauSage({
 
   const [activeSection, setActiveSection] = useState(0);
 
-  const scrollToMempelai = () =>
-    refMempelai.current.scrollIntoView({ behavior: "smooth" });
-  const scrollToAcara = () =>
-    refAcara.current.scrollIntoView({ behavior: "smooth" });
-  const scrollToGift = () =>
-    refGift.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToMempelai = () => refMempelai.current.scrollIntoView();
+  const scrollToAcara = () => refAcara.current.scrollIntoView();
+  const scrollToGift = () => refGift.current.scrollIntoView();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -178,7 +176,9 @@ function HijauSage({
     });
 
     //count down with timer data.tanggal_akad then setCounter
-    const countDownDate = new Date(data.tanggal_akad).getTime();
+    const countDownDate = new Date(
+      `${data.tanggal_akad.split("T")[0]}T${data.jam_akad.split(" -")[0]}`
+    ).getTime();
     const x = setInterval(function () {
       const now = new Date().getTime();
       const distance = countDownDate - now;
@@ -201,109 +201,108 @@ function HijauSage({
   }, []);
 
   return (
-    <div className="bg-green-50">
-      <div className="max-w-screen-md ml-auto mr-auto">
-        {
-          !open ? (
-            <>
-              {/* undangan cover */}
-
-              <div className="h-screen relative bg-white text-black flex flex-col items-center">
-                {/* daun */}
-                <>
-                  <Image
-                    src="/assets/templates/t1/daun1.png"
-                    alt="daun1"
-                    height={122}
-                    width={122}
-                    className="absolute z-[99] right-0"
-                    data-aos="fade-down-left"
-                  />
-                  <Image
-                    src="/assets/templates/t1/daun2.png"
-                    alt="daun2"
-                    height={180}
-                    width={180}
-                    className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px]"
-                    data-aos="zoom-in"
-                  />
-                  <Image
-                    src="/assets/templates/t1/daun3.png"
-                    alt="daun3"
-                    height={141}
-                    width={83}
-                    className="absolute z-[99] left-0 top-[162px]"
-                    data-aos="zoom-in-right"
-                  />
-                  <Image
-                    src="/assets/templates/t1/daun4.png"
-                    alt="daun4"
-                    height={129}
-                    width={63}
-                    className="absolute z-[99] right-0 top-[287px]"
-                    data-aos="zoom-in-left"
-                  />
-                  <Image
-                    src="/assets/templates/t1/daun5.png"
-                    alt="daun5"
-                    height={150}
-                    width={90}
-                    className="absolute z-[99] left-0 bottom-0"
-                    data-aos="fade-up-right"
-                  />
-                  <Image
-                    src="/assets/templates/t1/daun6.png"
-                    alt="daun6"
-                    height={150}
-                    width={90}
-                    className="absolute z-[99] right-0 bottom-0"
-                    data-aos="fade-up-left"
-                  />
-                </>
-                {/* end daun */}
-                <h1
-                  className={`${italiana.className} text-center mt-6 uppercase text-[20px]`}
-                >
-                  The Wedding of
-                </h1>
-                <p
-                  className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32]`}
-                  data-aos="zoom-in"
-                >
-                  {data?.singkatan_wanita} & {data?.singkatan_pria}
-                </p>
-                <Image
-                  alt="il"
-                  width={387}
-                  height={387}
-                  className="mt-10"
-                  data-aos="zoom-in"
-                  src="/assets/templates/t1/il.png"
-                />
-                <div
-                  className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5"
-                  data-aos="zoom-in"
-                >
-                  <p className="text-center mb-5">Kpd Bpk/Ibu/Saudara/i</p>
-                  <p className="font-bold text-center">{receiver.to}</p>
-                  <p className="font-bold text-center">{receiver.at}</p>
-                </div>
-                <div className="animate-fadein">
-                  <button
-                    onClick={() => setOpen(true)}
-                    className="animate-bounce bg-[#336546] text-white rounded-full px-3 py-2 text-xs mt-10"
+    <>
+      <div className="bg-green-50">
+        <div className="max-w-screen-md ml-auto mr-auto">
+          {
+            !open ? (
+              <>
+                {/* undangan cover */}
+                <div className="h-screen relative bg-white text-black flex flex-col items-center">
+                  {/* daun */}
+                  <>
+                    <Image
+                      src="/assets/templates/t1/daun1.png"
+                      alt="daun1"
+                      height={122}
+                      width={122}
+                      className="absolute z-[99] right-0"
+                      data-aos="fade-down-left"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daun2.png"
+                      alt="daun2"
+                      height={180}
+                      width={180}
+                      className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px]"
+                      data-aos="zoom-in"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daun3.png"
+                      alt="daun3"
+                      height={141}
+                      width={83}
+                      className="absolute z-[99] left-0 top-[162px]"
+                      data-aos="zoom-in-right"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daun4.png"
+                      alt="daun4"
+                      height={129}
+                      width={63}
+                      className="absolute z-[99] right-0 top-[287px]"
+                      data-aos="zoom-in-left"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daun5.png"
+                      alt="daun5"
+                      height={150}
+                      width={90}
+                      className="absolute z-[99] left-0 bottom-0"
+                      data-aos="fade-up-right"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daun6.png"
+                      alt="daun6"
+                      height={150}
+                      width={90}
+                      className="absolute z-[99] right-0 bottom-0"
+                      data-aos="fade-up-left"
+                    />
+                  </>
+                  {/* end daun */}
+                  <h1
+                    className={`${italiana.className} text-center mt-6 uppercase text-[20px]`}
                   >
-                    Buka Undangan
-                  </button>
+                    The Wedding of
+                  </h1>
+                  <p
+                    className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32]`}
+                    data-aos="zoom-in"
+                  >
+                    {data?.singkatan_wanita} & {data?.singkatan_pria}
+                  </p>
+                  <Image
+                    alt="il"
+                    width={387}
+                    height={387}
+                    className="mt-10"
+                    data-aos="zoom-in"
+                    src="/assets/templates/t1/il.png"
+                  />
+                  <div
+                    className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5"
+                    data-aos="zoom-in"
+                  >
+                    <p className="text-center mb-5">Kpd Bpk/Ibu/Saudara/i</p>
+                    <p className="font-bold text-center">{receiver.to}</p>
+                    <p className="font-bold text-center">{receiver.at}</p>
+                  </div>
+                  <div className="animate-fadein">
+                    <button
+                      onClick={() => setOpen(true)}
+                      className="animate-bounce bg-[#336546] text-white rounded-full px-3 py-2 text-xs mt-10"
+                    >
+                      Buka Undangan
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </>
-          ) : (
-            // {/* end undangan cover */}
-            // {/* undangan isi */}
-            <div className="relative bg-white">
-              <div ref={refMempelai}>
-                {open && (
+              </>
+            ) : (
+              // {/* end undangan cover */}
+              // {/* undangan isi */}
+              <div className="relative bg-white">
+                <div ref={refMempelai}>
                   <>
                     <Image
                       src="/assets/templates/t1/isiatas.png"
@@ -345,129 +344,134 @@ function HijauSage({
                       className="absolute z-[99] right-0 animate-zoomInLeft mt-[44.5rem]"
                       data-aos="zoom-in-left"
                     />
-                    {/* fab */}
-                    <div className="flex flex-col z-[99] bg-[#d5c3ac] rounded-full px-2 py-2 fixed bottom-0 top-0 mt-auto mb-auto h-fit right-0 m-4 gap-10">
-                      <MenuButton
-                        name="Mempelai"
-                        onClick={scrollToMempelai}
-                        icon={
-                          <UserGroupIcon
-                            className={`h-6 ${
-                              activeSection === 0
-                                ? "text-[#336546]"
-                                : "text-white"
-                            }`}
-                          />
-                        }
-                        className={`${
-                          activeSection === 0 ? "text-[#336546]" : "text-white"
-                        }`}
-                      />
-                      <MenuButton
-                        name="Acara"
-                        onClick={scrollToAcara}
-                        icon={
-                          <CalendarDaysIcon
-                            className={`h-6 ${
-                              activeSection === 1
-                                ? "text-[#336546]"
-                                : "text-white"
-                            }`}
-                          />
-                        }
-                        className={`${
-                          activeSection === 1 ? "text-[#336546]" : "text-white"
-                        }`}
-                      />
-                      <MenuButton
-                        name="Gift"
-                        onClick={scrollToGift}
-                        icon={
-                          <GiftIcon
-                            className={`h-6 ${
-                              activeSection === 2
-                                ? "text-[#336546]"
-                                : "text-white"
-                            }`}
-                          />
-                        }
-                        className={`${
-                          activeSection === 2 ? "text-[#336546]" : "text-white"
-                        }`}
-                      />
-                    </div>
-                    {/* end fab */}
                   </>
-                )}
-                <div className="p-4 flex flex-col items-center">
-                  <p
-                    className={`${poppins.className} text-[12px] text-black text-center mb-4`}
-                    data-aos="zoom-in"
-                  >
-                    “Dan segala sesuatunya Kami ciptakan
-                    <br /> berpasang-pasangan agar kamu <br /> mengingat
-                    kebesaran Allah”. <br />
-                    (QS. Adz Dzariyaat, 51: 49)
-                  </p>
-                  <MempelaiSection
-                    type={0}
-                    nama={data?.nama_mempelai_wanita}
-                    ke={data?.putri_ke}
-                    nama_ortu={data?.nama_ortu_wanita}
-                    isOpen={open}
-                  />
-                  <p
-                    className={`${meaCulpa.className} text-[20px] text-black my-3  `}
-                    data-aos="zoom-in"
-                  >
-                    dengan
-                  </p>
-                  <MempelaiSection
-                    type={1}
-                    nama={data?.nama_mempelai_pria}
-                    ke={data?.putra_ke}
-                    nama_ortu={data?.nama_ortu_pria}
-                    isOpen={open}
-                  />
+                  <div className="p-4 flex flex-col items-center">
+                    <p
+                      className={`${poppins.className} text-[12px] text-black text-center mb-4`}
+                      data-aos="zoom-in"
+                    >
+                      “Dan segala sesuatunya Kami ciptakan
+                      <br /> berpasang-pasangan agar kamu <br /> mengingat
+                      kebesaran Allah”. <br />
+                      (QS. Adz Dzariyaat, 51: 49)
+                    </p>
+                    <MempelaiSection
+                      type={0}
+                      nama={data?.nama_mempelai_wanita}
+                      ke={data?.putri_ke}
+                      nama_ortu={data?.nama_ortu_wanita}
+                      isOpen={open}
+                    />
+                    <p
+                      className={`${meaCulpa.className} text-[20px] text-black my-3  `}
+                      data-aos="zoom-in"
+                    >
+                      dengan
+                    </p>
+                    <MempelaiSection
+                      type={1}
+                      nama={data?.nama_mempelai_pria}
+                      ke={data?.putra_ke}
+                      nama_ortu={data?.nama_ortu_pria}
+                      isOpen={open}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                ref={refAcara}
-                className="bg-white relative mt-[221px] pb-[219px]"
-              >
-                <AcaraSection
-                  type={0}
-                  tanggal={data?.tanggal_akad}
-                  jam={data?.jam_akad}
-                  alamat={data?.alamat}
-                />
-                <div className="mt-14" />
-                <AcaraSection
-                  type={1}
-                  tanggal={data?.tanggal_akad}
-                  jam={data?.jam_akad}
-                  alamat={data?.alamat}
-                />
                 <div
-                  className="flex gap-5 justify-center mt-[62px]"
-                  data-aos="zoom-in"
+                  ref={refAcara}
+                  className="bg-white relative mt-[221px] pb-[219px]"
                 >
-                  <Countdown number={counter.hari} label="Hari" />
-                  <Countdown number={counter.jam} label="Jam" />
-                  <Countdown number={counter.menit} label="Menit" />
-                  <Countdown number={counter.detik} label="Detik" />
+                  <AcaraSection
+                    type={0}
+                    tanggal={data?.tanggal_akad}
+                    jam={data?.jam_akad}
+                    alamat={data?.alamat}
+                  />
+                  <div className="mt-14" />
+                  <AcaraSection
+                    type={1}
+                    tanggal={data?.tanggal_akad}
+                    jam={data?.jam_akad}
+                    alamat={data?.alamat}
+                  />
+                  <div
+                    className="flex gap-5 justify-center mt-[62px]"
+                    data-aos="zoom-in"
+                  >
+                    <Countdown number={counter.hari} label="Hari" />
+                    <Countdown number={counter.jam} label="Jam" />
+                    <Countdown number={counter.menit} label="Menit" />
+                    <Countdown number={counter.detik} label="Detik" />
+                  </div>
                 </div>
+                <div
+                  ref={refGift}
+                  // className="bg-white relative mt-[221px] pb-[219px]"
+                ></div>
+                {/* fab */}
+                {open && (
+                  <div
+                    className="flex flex-col z-[99] bg-[#d5c3ac] rounded-full px-2 py-2 fixed bottom-0 top-0 mt-auto mb-auto h-fit right-0 m-4 gap-10"
+                    data-aos="fade-in"
+                  >
+                    <MenuButton
+                      name="Mempelai"
+                      onClick={scrollToMempelai}
+                      icon={
+                        <UserGroupIcon
+                          className={`h-6 ${
+                            activeSection === 0
+                              ? "text-[#336546]"
+                              : "text-white"
+                          }`}
+                        />
+                      }
+                      className={`${
+                        activeSection === 0 ? "text-[#336546]" : "text-white"
+                      }`}
+                    />
+                    <MenuButton
+                      name="Acara"
+                      onClick={scrollToAcara}
+                      icon={
+                        <CalendarDaysIcon
+                          className={`h-6 ${
+                            activeSection === 1
+                              ? "text-[#336546]"
+                              : "text-white"
+                          }`}
+                        />
+                      }
+                      className={`${
+                        activeSection === 1 ? "text-[#336546]" : "text-white"
+                      }`}
+                    />
+                    <MenuButton
+                      name="Gift"
+                      onClick={scrollToGift}
+                      icon={
+                        <GiftIcon
+                          className={`h-6 ${
+                            activeSection === 2
+                              ? "text-[#336546]"
+                              : "text-white"
+                          }`}
+                        />
+                      }
+                      className={`${
+                        activeSection === 2 ? "text-[#336546]" : "text-white"
+                      }`}
+                    />
+                  </div>
+                )}
+                {/* end fab */}
               </div>
-              <div
-                ref={refGift}
-                // className="bg-white relative mt-[221px] pb-[219px]"
-              ></div>
-            </div>
-          )
-          // {/* end undangan isi */}
-        }
+            )
+            // {/* end undangan isi */}
+          }
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
