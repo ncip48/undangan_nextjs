@@ -1,7 +1,9 @@
 import {
   CalendarDaysIcon,
   GiftIcon,
-  UserGroupIcon,
+  PauseCircleIcon,
+  PlayCircleIcon,
+  UsersIcon,
 } from "@heroicons/react/24/solid";
 import {
   Italiana,
@@ -16,7 +18,9 @@ import AOS from "aos";
 
 // import aos styles
 import "aos/dist/aos.css";
-import { WeddingInterface } from "@/interfaces/wedding";
+import { Gift, WeddingInterface } from "@/interfaces/wedding";
+import { useAudio } from "@/utils/useAudio";
+import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 
 const poppins = Poppins({ weight: ["400", "700"], subsets: ["latin"] });
 // const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
@@ -121,6 +125,30 @@ const Countdown = ({ number, label }: { number: number; label: string }) => {
   );
 };
 
+const GiftCard = ({
+  type,
+  name,
+  an,
+}: {
+  type: string;
+  name: string;
+  an?: string;
+}) => {
+  return (
+    <div
+      className="border border-[#996A32] p-5 rounded-2xl bg-white"
+      data-aos="zoom-in"
+    >
+      <p className="text-black text-center">{an}</p>
+      <p className="text-black text-center font-semibold">{name}</p>
+      <button className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-4">
+        Salin
+        <DocumentDuplicateIcon className="h-5" />
+      </button>
+    </div>
+  );
+};
+
 function HijauSage({
   receiver,
   data,
@@ -128,6 +156,7 @@ function HijauSage({
   receiver: { at?: string; to?: string };
   data: WeddingInterface;
 }) {
+  const [playing, toggle] = useAudio("/assets/mp3/diary.mp3");
   const refMempelai: any = useRef(null);
   const refAcara: any = useRef(null);
   const refGift: any = useRef(null);
@@ -202,114 +231,118 @@ function HijauSage({
 
   return (
     <>
-      <div className="bg-green-50">
+      <div className="bg-green-50 overflow-hidden">
         <div className="max-w-screen-md ml-auto mr-auto">
-          {
-            !open ? (
-              <>
-                {/* undangan cover */}
-                <div className="h-screen relative bg-white text-black flex flex-col items-center">
-                  {/* daun */}
-                  <>
-                    <Image
-                      src="/assets/templates/t1/daun1.png"
-                      alt="daun1"
-                      height={122}
-                      width={122}
-                      className="absolute z-[99] right-0"
-                      data-aos="fade-down-left"
-                    />
-                    <Image
-                      src="/assets/templates/t1/daun2.png"
-                      alt="daun2"
-                      height={180}
-                      width={180}
-                      className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px]"
-                      data-aos="zoom-in"
-                    />
-                    <Image
-                      src="/assets/templates/t1/daun3.png"
-                      alt="daun3"
-                      height={141}
-                      width={83}
-                      className="absolute z-[99] left-0 top-[162px]"
-                      data-aos="zoom-in-right"
-                    />
-                    <Image
-                      src="/assets/templates/t1/daun4.png"
-                      alt="daun4"
-                      height={129}
-                      width={63}
-                      className="absolute z-[99] right-0 top-[287px]"
-                      data-aos="zoom-in-left"
-                    />
-                    <Image
-                      src="/assets/templates/t1/daun5.png"
-                      alt="daun5"
-                      height={150}
-                      width={90}
-                      className="absolute z-[99] left-0 bottom-0"
-                      data-aos="fade-up-right"
-                    />
-                    <Image
-                      src="/assets/templates/t1/daun6.png"
-                      alt="daun6"
-                      height={150}
-                      width={90}
-                      className="absolute z-[99] right-0 bottom-0"
-                      data-aos="fade-up-left"
-                    />
-                  </>
-                  {/* end daun */}
-                  <h1
-                    className={`${italiana.className} text-center mt-6 uppercase text-[20px]`}
-                  >
-                    The Wedding of
-                  </h1>
-                  <p
-                    className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32]`}
-                    data-aos="zoom-in"
-                  >
-                    {data?.singkatan_wanita} & {data?.singkatan_pria}
-                  </p>
+          {!open ? (
+            <>
+              {/* undangan cover */}
+              <div className="h-screen relative bg-white text-black flex flex-col items-center">
+                {/* daun */}
+                <>
                   <Image
-                    alt="il"
-                    width={387}
-                    height={387}
-                    className="mt-10"
-                    data-aos="zoom-in"
-                    src="/assets/templates/t1/il.png"
+                    src="/assets/templates/t1/daun1.png"
+                    alt="daun1"
+                    height={122}
+                    width={122}
+                    className="absolute z-[99] right-0"
+                    data-aos="fade-down-left"
                   />
-                  <div
-                    className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5"
+                  <Image
+                    src="/assets/templates/t1/daun2.png"
+                    alt="daun2"
+                    height={180}
+                    width={180}
+                    className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px]"
                     data-aos="zoom-in"
-                  >
-                    <p className="text-center mb-5">Kpd Bpk/Ibu/Saudara/i</p>
-                    <p className="font-bold text-center">{receiver.to}</p>
-                    <p className="font-bold text-center">{receiver.at}</p>
-                  </div>
-                  <div className="animate-fadein">
-                    <button
-                      onClick={() => setOpen(true)}
-                      className="animate-bounce bg-[#336546] text-white rounded-full px-3 py-2 text-xs mt-10"
-                    >
-                      Buka Undangan
-                    </button>
-                  </div>
+                  />
+                  <Image
+                    src="/assets/templates/t1/daun3.png"
+                    alt="daun3"
+                    height={141}
+                    width={83}
+                    className="absolute z-[99] left-0 top-[162px]"
+                    data-aos="zoom-in-right"
+                  />
+                  <Image
+                    src="/assets/templates/t1/daun4.png"
+                    alt="daun4"
+                    height={129}
+                    width={63}
+                    className="absolute z-[99] right-0 top-[287px]"
+                    data-aos="zoom-in-left"
+                  />
+                  <Image
+                    src="/assets/templates/t1/daun5.png"
+                    alt="daun5"
+                    height={150}
+                    width={90}
+                    className="absolute z-[99] left-0 bottom-0"
+                    data-aos="fade-up-right"
+                  />
+                  <Image
+                    src="/assets/templates/t1/daun6.png"
+                    alt="daun6"
+                    height={150}
+                    width={90}
+                    className="absolute z-[99] right-0 bottom-0"
+                    data-aos="fade-up-left"
+                  />
+                </>
+                {/* end daun */}
+                <h1
+                  className={`${italiana.className} text-center mt-6 uppercase text-[20px]`}
+                >
+                  The Wedding of
+                </h1>
+                <p
+                  className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32]`}
+                  data-aos="zoom-in"
+                >
+                  {data?.singkatan_wanita} & {data?.singkatan_pria}
+                </p>
+                <Image
+                  alt="il"
+                  width={387}
+                  height={387}
+                  className="mt-10"
+                  data-aos="zoom-in"
+                  src="/assets/templates/t1/il.png"
+                />
+                <div
+                  className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5"
+                  data-aos="zoom-in"
+                >
+                  <p className="text-center mb-5">Kpd Bpk/Ibu/Saudara/i</p>
+                  <p className="font-bold text-center">{receiver.to}</p>
+                  <p className="font-bold text-center">{receiver.at}</p>
                 </div>
-              </>
-            ) : (
-              // {/* end undangan cover */}
-              // {/* undangan isi */}
+                <div className="animate-fadein">
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      toggle();
+                    }}
+                    className="animate-bounce bg-[#336546] text-white rounded-full px-3 py-2 text-xs mt-10"
+                  >
+                    Buka Undangan
+                  </button>
+                </div>
+              </div>
+              {/* end undangan cover */}
+            </>
+          ) : (
+            <>
+              {/* undangan isi */}
+              <audio loop hidden autoPlay={playing}></audio>
               <div className="relative bg-white">
-                <div ref={refMempelai}>
+                <div ref={refMempelai} className="pt-[111px]">
                   <>
                     <Image
                       src="/assets/templates/t1/isiatas.png"
                       alt="isiatas"
                       height={104}
                       width={390}
-                      className="w-full"
+                      className="w-full absolute z-[99] top-0"
                       data-aos="fade-down"
                     />
                     <Image
@@ -333,7 +366,7 @@ function HijauSage({
                       alt="daunisi3"
                       height={187}
                       width={130}
-                      className="absolute z-[99] left-0 mt-[44.5rem]"
+                      className="absolute z-[99] left-0 mt-[43rem]"
                       data-aos="zoom-in-right"
                     />
                     <Image
@@ -341,7 +374,7 @@ function HijauSage({
                       alt="daunisi4"
                       height={187}
                       width={130}
-                      className="absolute z-[99] right-0 animate-zoomInLeft mt-[44.5rem]"
+                      className="absolute z-[99] right-0 mt-[43rem]"
                       data-aos="zoom-in-left"
                     />
                   </>
@@ -377,98 +410,198 @@ function HijauSage({
                     />
                   </div>
                 </div>
-                <div
-                  ref={refAcara}
-                  className="bg-white relative mt-[221px] pb-[219px]"
-                >
-                  <AcaraSection
-                    type={0}
-                    tanggal={data?.tanggal_akad}
-                    jam={data?.jam_akad}
-                    alamat={data?.alamat}
-                  />
-                  <div className="mt-14" />
-                  <AcaraSection
-                    type={1}
-                    tanggal={data?.tanggal_akad}
-                    jam={data?.jam_akad}
-                    alamat={data?.alamat}
-                  />
-                  <div
-                    className="flex gap-5 justify-center mt-[62px]"
-                    data-aos="zoom-in"
-                  >
-                    <Countdown number={counter.hari} label="Hari" />
-                    <Countdown number={counter.jam} label="Jam" />
-                    <Countdown number={counter.menit} label="Menit" />
-                    <Countdown number={counter.detik} label="Detik" />
+                <div ref={refAcara} className="bg-white relative">
+                  <>
+                    <Image
+                      src="/assets/templates/t1/daunisi5.png"
+                      alt="daunisi5"
+                      height={141}
+                      width={70}
+                      className="absolute z-[99] right-0 mt-[10rem]"
+                      data-aos="zoom-in-left"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daunisi6.png"
+                      alt="daunisi6"
+                      height={192}
+                      width={74}
+                      className="absolute z-[99] left-0 mt-[20rem]"
+                      data-aos="zoom-in-right"
+                    />
+                    <Image
+                      src="/assets/templates/t1/daunisi7.png"
+                      alt="daunisi7"
+                      height={306}
+                      width={196}
+                      className="absolute z-[99] right-0 mt-[41rem]"
+                      data-aos="zoom-in-left"
+                    />
+                    <Image
+                      src="/assets/templates/t1/bgisi1.png"
+                      alt="bgisi1"
+                      height={200}
+                      width={200}
+                      className="absolute z-[99] left-14 mt-[3rem]"
+                      data-aos="zoom-in"
+                    />
+                    <Image
+                      src="/assets/templates/t1/bgisi2.png"
+                      alt="bgisi2"
+                      height={200}
+                      width={200}
+                      className="absolute z-[99] right-0 mt-[20rem]"
+                      data-aos="zoom-in"
+                    />
+                    <Image
+                      src="/assets/templates/t1/bgisi3.png"
+                      alt="bgisi3"
+                      height={200}
+                      width={200}
+                      className="absolute z-[99] left-0 mt-[40rem]"
+                      //   data-aos="zoom-in"
+                    />
+                  </>
+                  <div className="h-screen flex flex-col justify-center">
+                    <AcaraSection
+                      type={0}
+                      tanggal={data?.tanggal_akad}
+                      jam={data?.jam_akad}
+                      alamat={data?.alamat}
+                    />
+                    <div className="mt-14" />
+                    <AcaraSection
+                      type={1}
+                      tanggal={data?.tanggal_resepsi}
+                      jam={data?.jam_resepsi}
+                      alamat={data?.alamat}
+                    />
+                    <div
+                      className="flex gap-5 justify-center mt-[62px]"
+                      data-aos="zoom-in"
+                    >
+                      <Countdown number={counter.hari} label="Hari" />
+                      <Countdown number={counter.jam} label="Jam" />
+                      <Countdown number={counter.menit} label="Menit" />
+                      <Countdown number={counter.detik} label="Detik" />
+                    </div>
                   </div>
                 </div>
-                <div
-                  ref={refGift}
-                  // className="bg-white relative mt-[221px] pb-[219px]"
-                ></div>
+                <div ref={refGift} className="bg-white relative">
+                  <div className="h-screen flex flex-col justify-center rounded-full bg-[#d5c3ac] px-[45px]">
+                    <h1
+                      className={`${lobster.className} text-[48px] text-[#336546] text-center`}
+                      data-aos="zoom-in"
+                    >
+                      Gift
+                    </h1>
+                    <p
+                      className={`${poppins.className} text-[12px] text-black text-center py-10`}
+                      data-aos="zoom-in"
+                    >
+                      Bagi yang berkeinginan memberikan tanda kasih, kami
+                      menyediakan wedding gift dibawah ini:
+                    </p>
+                    <div className="flex flex-col gap-10 px-[15px]">
+                      {data.gift.map((item: Gift, index: number) => {
+                        return (
+                          <GiftCard
+                            name={item.name}
+                            an={item.an}
+                            key={index}
+                            type={item.type}
+                          />
+                        );
+                      })}
+                    </div>
+                    <p
+                      className={`${poppins.className} text-[12px] text-black text-center mb-2 mt-4`}
+                      data-aos="zoom-in"
+                    >
+                      Terima Kasih Atas kehadiran dan Doa restunya
+                    </p>
+                    <p
+                      className={`${poppins.className} text-[12px] text-black text-center mb-3`}
+                      data-aos="zoom-in"
+                    >
+                      Kami yang Berbahagia, Keluarga Besar Kedua Mempelai
+                    </p>
+                    <p
+                      className={`${licorice.className} text-center text-[36px] text-[#996A32]`}
+                      data-aos="zoom-in"
+                    >
+                      {data?.singkatan_wanita} & {data?.singkatan_pria}
+                    </p>
+                  </div>
+                </div>
                 {/* fab */}
                 {open && (
-                  <div
-                    className="flex flex-col z-[99] bg-[#d5c3ac] rounded-full px-2 py-2 fixed bottom-0 top-0 mt-auto mb-auto h-fit right-0 m-4 gap-10"
-                    data-aos="fade-in"
-                  >
-                    <MenuButton
-                      name="Mempelai"
-                      onClick={scrollToMempelai}
-                      icon={
-                        <UserGroupIcon
-                          className={`h-6 ${
-                            activeSection === 0
-                              ? "text-[#336546]"
-                              : "text-white"
-                          }`}
-                        />
-                      }
-                      className={`${
-                        activeSection === 0 ? "text-[#336546]" : "text-white"
-                      }`}
-                    />
-                    <MenuButton
-                      name="Acara"
-                      onClick={scrollToAcara}
-                      icon={
-                        <CalendarDaysIcon
-                          className={`h-6 ${
-                            activeSection === 1
-                              ? "text-[#336546]"
-                              : "text-white"
-                          }`}
-                        />
-                      }
-                      className={`${
-                        activeSection === 1 ? "text-[#336546]" : "text-white"
-                      }`}
-                    />
-                    <MenuButton
-                      name="Gift"
-                      onClick={scrollToGift}
-                      icon={
-                        <GiftIcon
-                          className={`h-6 ${
-                            activeSection === 2
-                              ? "text-[#336546]"
-                              : "text-white"
-                          }`}
-                        />
-                      }
-                      className={`${
-                        activeSection === 2 ? "text-[#336546]" : "text-white"
-                      }`}
-                    />
+                  <div className="flex flex-col items-center z-[99] bg-transparent fixed bottom-0 top-0 mt-auto mb-auto h-fit right-0 m-4 gap-2">
+                    <div
+                      className={`flex flex-col bg-[#be9f7c] rounded-full px-2 py-2 gap-8`}
+                    >
+                      <MenuButton
+                        name="Mempelai"
+                        onClick={scrollToMempelai}
+                        icon={
+                          <UsersIcon
+                            className={`h-6 ${
+                              activeSection === 0
+                                ? "text-[#336546]"
+                                : "text-white"
+                            }`}
+                          />
+                        }
+                        className={`${
+                          activeSection === 0 ? "text-[#336546]" : "text-white"
+                        }`}
+                      />
+                      <MenuButton
+                        name="Acara"
+                        onClick={scrollToAcara}
+                        icon={
+                          <CalendarDaysIcon
+                            className={`h-6 ${
+                              activeSection === 1
+                                ? "text-[#336546]"
+                                : "text-white"
+                            }`}
+                          />
+                        }
+                        className={`${
+                          activeSection === 1 ? "text-[#336546]" : "text-white"
+                        }`}
+                      />
+                      <MenuButton
+                        name="Gift"
+                        onClick={scrollToGift}
+                        icon={
+                          <GiftIcon
+                            className={`h-6 ${
+                              activeSection === 2
+                                ? "text-[#336546]"
+                                : "text-white"
+                            }`}
+                          />
+                        }
+                        className={`${
+                          activeSection === 2 ? "text-[#336546]" : "text-white"
+                        }`}
+                      />
+                    </div>
+                    <button onClick={toggle}>
+                      {playing ? (
+                        <PauseCircleIcon className="text-[#d5c3ac] h-5" />
+                      ) : (
+                        <PlayCircleIcon className="text-[#d5c3ac] h-5" />
+                      )}
+                    </button>
                   </div>
                 )}
                 {/* end fab */}
               </div>
-            )
-            // {/* end undangan isi */}
-          }
+              {/*end undangan isi */}
+            </>
+          )}
         </div>
       </div>
     </>
