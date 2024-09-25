@@ -517,7 +517,7 @@ function HijauSage({
                       alt="daungift3"
                       height={178}
                       width={165}
-                      className="absolute z-[99] left-0 mt-[30rem]"
+                      className="absolute z-[99] left-0 mt-[31rem]"
                       data-aos="zoom-in-right"
                     />
                     <Image
