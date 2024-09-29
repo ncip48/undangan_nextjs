@@ -21,6 +21,7 @@ import "aos/dist/aos.css";
 import { Gift, WeddingInterface } from "@/interfaces/wedding";
 import { useAudio } from "@/utils/useAudio";
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
 
 const poppins = Poppins({ weight: ["400", "700"], subsets: ["latin"] });
 // const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
@@ -58,7 +59,7 @@ const MempelaiSection = ({
         {nama}
       </p>
       <p className={`${poppins.className} text-[12px] text-black`}>
-        Putri {ke} dari {nama_ortu}
+        {type == 0 ? "Putri" : "Putra"} {ke} dari {nama_ortu}
       </p>
     </div>
   );
@@ -135,6 +136,18 @@ const GiftCard = ({
   an?: string;
 }) => {
   const imageUri = `/assets/bank/${type}.png`;
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text).then(
+      function () {
+        toast.success("Berhasil copy to clipboard");
+      },
+      function (err) {
+        console.error("Async: Could not copy text: ", err);
+      }
+    );
+  };
+
   return (
     <div
       className="border border-[#996A32] p-4 rounded-2xl bg-white"
@@ -149,7 +162,10 @@ const GiftCard = ({
       />
       <p className="text-black text-center">{an}</p>
       <p className="text-black text-center font-semibold">{name}</p>
-      <button className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[12px]">
+      <button
+        className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[12px]"
+        onClick={() => copyToClipboard(name)}
+      >
         Salin
         <DocumentDuplicateIcon className="h-5" />
       </button>
@@ -525,7 +541,7 @@ function HijauSage({
                       alt="daungiftbawah"
                       height={96}
                       width={180}
-                      className="absolute z-[99] bottom-[-15px] left-0 right-0 ml-auto mr-auto"
+                      className="absolute z-[99] bottom-0 left-0 right-0 ml-auto mr-auto"
                       //   data-aos="zoom-in-up"
                     />
                   </>
@@ -632,9 +648,9 @@ function HijauSage({
                     </div>
                     <button onClick={toggle}>
                       {playing ? (
-                        <PauseCircleIcon className="text-[#d5c3ac] h-5" />
+                        <PauseCircleIcon className="text-[#be9f7c] h-5" />
                       ) : (
-                        <PlayCircleIcon className="text-[#d5c3ac] h-5" />
+                        <PlayCircleIcon className="text-[#be9f7c] h-5" />
                       )}
                     </button>
                   </div>
