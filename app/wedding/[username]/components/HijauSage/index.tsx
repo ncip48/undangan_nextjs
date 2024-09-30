@@ -268,7 +268,7 @@ function HijauSage({
                     alt="daun1"
                     height={122}
                     width={122}
-                    className="absolute z-[99] right-0"
+                    className="absolute z-[99] right-0 w-[14.46vh]"
                     data-aos="fade-down-left"
                   />
                   <Image
@@ -276,7 +276,7 @@ function HijauSage({
                     alt="daun2"
                     height={180}
                     width={180}
-                    className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[40px]"
+                    className="absolute z-[99] ml-auto mr-auto left-0 right-0 top-[9.6vh] h-[9.9vh] w-[21.4vh]"
                     data-aos="zoom-in"
                   />
                   <Image
@@ -314,12 +314,12 @@ function HijauSage({
                 </>
                 {/* end daun */}
                 <h1
-                  className={`${italiana.className} text-center mt-6 uppercase text-[20px]`}
+                  className={`${italiana.className} text-center mt-[2.4vh] uppercase text-[2.37vh]`}
                 >
                   The Wedding of
                 </h1>
                 <p
-                  className={`${licorice.className} text-center mt-2 text-[60px] text-[#996A32]`}
+                  className={`${licorice.className} text-center mt-1 text-[7.1vh] text-[#996A32]`}
                   data-aos="zoom-in"
                 >
                   {data?.singkatan_wanita} & {data?.singkatan_pria}
@@ -328,12 +328,12 @@ function HijauSage({
                   alt="il"
                   width={387}
                   height={387}
-                  className="mt-10 h-96 w-96"
-                  // data-aos="zoom-in"
+                  className="mt-[1vh] max-h-96 max-w-96 h-[50vh] w-[50vh]"
+                  data-aos="zoom-in"
                   src="/assets/templates/t1/il.png"
                 />
                 <div
-                  className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-10 rounded-lg py-5 mt-5"
+                  className="bg-gradient-to-r from-[#d5e0db] to-[#ede0d5] px-[4.7vh] rounded-lg py-[2.37vh] mt-[2.37vh]"
                   data-aos="zoom-in"
                 >
                   <p className="text-center mb-5">Kpd Bpk/Ibu/Saudara/i</p>
@@ -346,7 +346,7 @@ function HijauSage({
                       setOpen(true);
                       toggle();
                     }}
-                    className="animate-bounce bg-[#336546] text-white rounded-full px-3 py-2 text-xs mt-10"
+                    className="animate-bounce bg-[#336546] text-white rounded-full px-3 py-2 text-xs mt-[4.7vh]"
                   >
                     Buka Undangan
                   </button>
