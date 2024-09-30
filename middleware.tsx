@@ -25,6 +25,7 @@ export default async function middleware(req: NextRequest) {
     /^\/api\/auth\/register$/,
     /^\/api\/image$/,
     /^\/api\/weddings\/[^\/]+$/, // Regex pattern for /api/weddings/:username
+    /^\/api\/templates$/, // Added pattern for /api/templates
   ];
 
   // Check if the path matches any public route patterns
