@@ -44,7 +44,7 @@ jobs:
           server-dir: /.next/
           timeout: 300000 # Set a longer timeout value in milliseconds (here, 5 minutes)
 
-      - name: Restart Application
+      - name: 🔄 Restart Application
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
