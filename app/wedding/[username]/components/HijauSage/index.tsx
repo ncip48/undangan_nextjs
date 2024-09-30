@@ -163,11 +163,11 @@ const GiftCard = ({
       <p className="text-black text-center">{an}</p>
       <p className="text-black text-center font-semibold">{name}</p>
       <button
-        className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[12px]"
+        className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[12px] text-white"
         onClick={() => copyToClipboard(name)}
       >
         Salin
-        <DocumentDuplicateIcon className="h-5" />
+        <DocumentDuplicateIcon className="h-5 text-white" />
       </button>
     </div>
   );

@@ -1,0 +1,44 @@
+name: 🚀 Deploy website on push
+
+on:
+  push:
+    branches:
+      - main # Adjust the branch name if needed
+
+jobs:
+  deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.16.0 # Use the desired Node.js version
+
+      - name: 🚚 SSH Login and Pull Latest Code
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd repositories/undangan_nextjs
+            git pull
+
+      - name: 🔨 Install dependencies and build Next.js app
+        run: |
+          yarn install  # Install project dependencies
+          yarn build  # Build Next.js app
+
+      - name: 📂 Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./.next # Adjust to the output directory of your Next.js app
+          server-dir: /.next
+          timeout: 300000 # Set a longer timeout value in milliseconds (here, 5 minutes)
