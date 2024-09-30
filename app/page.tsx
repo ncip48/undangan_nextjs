@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { getTemplates } from "@/services/actions/template";
@@ -108,11 +109,9 @@ function Page() {
             {templates?.map((item: any, index: number) => {
               return (
                 <div className="bg-white p-6 rounded-lg shadow-lg" key={index}>
-                  <Image
+                  <img
                     src={`/assets/${item.image}`}
-                    alt="Template 1"
-                    height={150}
-                    width={150}
+                    alt={item.path}
                     // className="w-30 rounded-lg"
                     className="w-full h-48 object-cover rounded-lg"
                     // fill
