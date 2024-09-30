@@ -54,4 +54,5 @@ jobs:
           script: |
             source /home/invitasi/nodevenv/repositories/undangan_nextjs/22/bin/activate
             cd /home/invitasi/repositories/undangan_nextjs
+            npm install
             cloudlinux-selector restart --json --interpreter nodejs --user invitasi --app-root /home/invitasi/repositories/undangan_nextjs

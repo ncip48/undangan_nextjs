@@ -19,6 +19,7 @@ import {
 import DashboardNavbar from "./_components/DashboardNavbar";
 import useEffectAfterMount from "@/utils/useEffectAfterMount";
 import { useEffect, useState } from "react";
+import NextTopLoader from "nextjs-toploader";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -152,25 +153,29 @@ export default function DashboardLayout({
   };
 
   return (
-    <div className="dark min-h-screen bg-secondarydark dark:bg-secondarydark">
-      <Sidenav
-        setOpenNav={() => setOpenSidenav(!openSidenav)}
-        routes={routes}
-        stateSidebar={openSidenav}
-        brandImg={
-          sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
-        }
-      />
-      <DashboardNavbar
-        onPressMenu={() => setOpenSidenav(!openSidenav)}
-        active={findActiveRoute(routes, pathname)}
-        className={!openSidenav ? "px-8" : "xl:pl-80 px-8"}
-      />
-      <div
-        className={`p-4 px-8 pr-4 ${!openSidenav ? "" : "xl:ml-80 xl:pl-0"}`}
-      >
-        {/* <Configurator /> */}
-        {/* <IconButton
+    <>
+      <NextTopLoader />
+      <div className="dark min-h-screen bg-secondarydark dark:bg-secondarydark">
+        <Sidenav
+          setOpenNav={() => setOpenSidenav(!openSidenav)}
+          routes={routes}
+          stateSidebar={openSidenav}
+          brandImg={
+            sidenavType === "dark"
+              ? "/img/logo-ct.png"
+              : "/img/logo-ct-dark.png"
+          }
+        />
+        <DashboardNavbar
+          onPressMenu={() => setOpenSidenav(!openSidenav)}
+          active={findActiveRoute(routes, pathname)}
+          className={!openSidenav ? "px-8" : "xl:pl-80 px-8"}
+        />
+        <div
+          className={`p-4 px-8 pr-4 ${!openSidenav ? "" : "xl:ml-80 xl:pl-0"}`}
+        >
+          {/* <Configurator /> */}
+          {/* <IconButton
           size="lg"
           color="white"
           className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
@@ -179,11 +184,12 @@ export default function DashboardLayout({
         >
           <Cog6ToothIcon className="h-5 w-5" />
         </IconButton> */}
-        {children}
-        <div className="text-blue-gray-600">
-          <Footer />
+          {children}
+          <div className="text-blue-gray-600">
+            <Footer />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
