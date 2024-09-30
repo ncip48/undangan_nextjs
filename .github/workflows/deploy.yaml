@@ -40,6 +40,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./.next # Adjust to the output directory of your Next.js app
+          local-dir: ./.next/ # Adjust to the output directory of your Next.js app
           server-dir: /.next
           timeout: 300000 # Set a longer timeout value in milliseconds (here, 5 minutes)
