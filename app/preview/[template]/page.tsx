@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { WeddingInterface } from "@/interfaces/wedding";
 import HijauSage from "@/app/wedding/[username]/components/HijauSage";
@@ -87,7 +87,7 @@ function Page({ params }: { params: { template: string } }) {
     case "hijausage":
       return <HijauSage receiver={receiver} data={data} />;
     default:
-      break;
+      return redirect("/");
   }
 }
 
