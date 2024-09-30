@@ -328,8 +328,8 @@ function HijauSage({
                   alt="il"
                   width={387}
                   height={387}
-                  className="mt-10"
-                  data-aos="zoom-in"
+                  className="mt-10 h-96 w-96"
+                  // data-aos="zoom-in"
                   src="/assets/templates/t1/il.png"
                 />
                 <div
