@@ -43,3 +43,15 @@ jobs:
           local-dir: ./.next/ # Adjust to the output directory of your Next.js app
           server-dir: /.next/
           timeout: 300000 # Set a longer timeout value in milliseconds (here, 5 minutes)
+
+      - name: Restart Application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            source /home/invitasi/nodevenv/repositories/undangan_nextjs/22/bin/activate
+            cd /home/invitasi/repositories/undangan_nextjs
+            cloudlinux-selector restart --json --interpreter nodejs --user invitasi --app-root /home/invitasi/repositories/undangan_nextjs
