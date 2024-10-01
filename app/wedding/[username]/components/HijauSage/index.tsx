@@ -51,14 +51,14 @@ const MempelaiSection = ({
         alt="mw"
         height={206}
         width={169}
-        className=" mx-4"
+        className=" mx-4 h-[24.408vh] w-[20.024vh]"
       />
       <p
-        className={`${licorice.className} text-center text-[30px] text-[#996A32]`}
+        className={`${licorice.className} text-center text-[3.555vh] text-[#996A32]`}
       >
         {nama}
       </p>
-      <p className={`${poppins.className} text-[12px] text-black`}>
+      <p className={`${poppins.className} text-[1.422vh] text-black`}>
         {type == 0 ? "Putri" : "Putra"} {ke} dari {nama_ortu}
       </p>
     </div>
@@ -103,23 +103,27 @@ const AcaraSection = ({
   const formattedDate = parsedDate.toLocaleDateString("id-ID", options);
   return (
     <div className="flex flex-col items-center" data-aos="zoom-in">
-      <h1 className={`${lobster.className} text-[#336546] text-[28px]`}>
+      <h1 className={`${lobster.className} text-[#336546] text-[3.318vh]`}>
         {type === 0 ? "Akad Nikah" : "Resepsi"}
       </h1>
-      <p className="text-black text-[14px]">{formattedDate}</p>
-      <p className="text-black text-[14px]">{jam}</p>
-      <p className="text-black text-[14px]">{alamat}</p>
+      <p className="text-black text-[1.659vh]">{formattedDate}</p>
+      <p className="text-black text-[1.659vh]">{jam}</p>
+      <p className="text-black text-[1.659vh]">{alamat}</p>
     </div>
   );
 };
 
 const Countdown = ({ number, label }: { number: number; label: string }) => {
   return (
-    <div className="bg-[#996A32] rounded-md px-[12px] py-[6px] w-[56px]">
-      <h1 className={`${lobster.className} text-white text-[24px] text-center`}>
+    <div className="bg-[#996A32] rounded-md px-[1.422vh] py-[0.711vh] w-[6.636vh]">
+      <h1
+        className={`${lobster.className} text-white text-[2.844vh] text-center`}
+      >
         {number}
       </h1>
-      <h1 className={`${lobster.className} text-white text-[14px] text-center`}>
+      <h1
+        className={`${lobster.className} text-white text-[1.659vh] text-center`}
+      >
         {label}
       </h1>
     </div>
@@ -150,11 +154,13 @@ const GiftCard = ({
 
   return (
     <div
-      className="border border-[#996A32] p-4 rounded-2xl bg-white"
+      className="border border-[#996A32] p-[1.896vh] rounded-2xl bg-white"
       data-aos="zoom-in"
     >
       <Image
-        className="mx-auto mb-2"
+        className={`mx-auto mb-2 ${
+          type === "address" ? "h-[5.687vh] w-[5.687vh]" : "h-auto w-[12.204vh]"
+        }`}
         src={imageUri}
         alt="img"
         width={type === "address" ? 48 : 103}
@@ -163,7 +169,7 @@ const GiftCard = ({
       <p className="text-black text-center">{an}</p>
       <p className="text-black text-center font-semibold">{name}</p>
       <button
-        className="bg-[#336546] px-[12px] py-[9px] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[12px] text-white"
+        className="bg-[#336546] px-[1.422vh] py-[1.066vh] rounded-full flex flex-row gap-1 items-center mx-auto mt-2 text-[1.422vh] text-white"
         onClick={() => copyToClipboard(name)}
       >
         Salin
@@ -359,14 +365,14 @@ function HijauSage({
               {/* undangan isi */}
               <audio loop hidden autoPlay={playing}></audio>
               <div className="relative bg-white">
-                <div ref={refMempelai} className="pt-[111px]">
+                <div ref={refMempelai} className="pt-[13.152vh]">
                   <>
                     <Image
                       src="/assets/templates/t1/isiatas.png"
                       alt="isiatas"
                       height={104}
                       width={390}
-                      className="w-full absolute z-[99] top-0"
+                      className="absolute z-[99] top-0 h-[12.322vh] w-full"
                       data-aos="fade-down"
                     />
                     <Image
@@ -374,7 +380,7 @@ function HijauSage({
                       alt="daunisi1"
                       height={177}
                       width={69}
-                      className="absolute z-[99] mt-40"
+                      className="absolute z-[99] mt-[18.009vh] h-[20.972vh] w-[8.175vh]"
                       data-aos="zoom-in-right"
                     />
                     <Image
@@ -382,15 +388,15 @@ function HijauSage({
                       alt="daunisi2"
                       height={177}
                       width={69}
-                      className="absolute z-[99] right-0 mt-[28rem]"
-                      data-aos="zoom-in-left"
+                      className="absolute z-[99] right-0 mt-[49.052vh] h-[20.972vh] w-[8.175vh]"
+                      // data-aos="zoom-in-left"
                     />
                     <Image
                       src="/assets/templates/t1/daunisi3.png"
                       alt="daunisi3"
                       height={187}
                       width={130}
-                      className="absolute z-[99] left-0 mt-[43rem]"
+                      className="absolute z-[99] left-0 mt-[81.517vh] h-[22.156vh] w-[15.403vh]"
                       data-aos="zoom-in-right"
                     />
                     <Image
@@ -398,13 +404,13 @@ function HijauSage({
                       alt="daunisi4"
                       height={187}
                       width={130}
-                      className="absolute z-[99] right-0 mt-[43rem]"
+                      className="absolute z-[99] right-0 mt-[81.517vh] h-[22.156vh] w-[15.403vh]"
                       data-aos="zoom-in-left"
                     />
                   </>
                   <div className="p-4 flex flex-col items-center">
                     <p
-                      className={`${poppins.className} text-[12px] text-black text-center mb-4`}
+                      className={`${poppins.className} text-[1.422vh] text-black text-center mb-4`}
                       data-aos="zoom-in"
                     >
                       “Dan segala sesuatunya Kami ciptakan
@@ -420,7 +426,7 @@ function HijauSage({
                       isOpen={open}
                     />
                     <p
-                      className={`${meaCulpa.className} text-[20px] text-black my-3  `}
+                      className={`${meaCulpa.className} text-[2.37vh] text-black my-[1.54vh]  `}
                       data-aos="zoom-in"
                     >
                       dengan
@@ -441,7 +447,7 @@ function HijauSage({
                       alt="daunisi5"
                       height={141}
                       width={70}
-                      className="absolute z-[99] right-0 mt-[10rem]"
+                      className="absolute z-[99] right-0 mt-[18.967vh] h-[16.706vh] w-[8.294vh]"
                       data-aos="zoom-in-left"
                     />
                     <Image
@@ -449,7 +455,7 @@ function HijauSage({
                       alt="daunisi6"
                       height={192}
                       width={74}
-                      className="absolute z-[99] left-0 mt-[20rem]"
+                      className="absolute z-[99] left-0 mt-[37.915vh] h-[22.749vh] w-[8.768vh]"
                       data-aos="zoom-in-right"
                     />
                     <Image
@@ -457,7 +463,7 @@ function HijauSage({
                       alt="daunisi7"
                       height={306}
                       width={196}
-                      className="absolute z-[99] right-0 mt-[41rem]"
+                      className="absolute z-[99] right-0 mt-[77.725vh] h-[36.256vh] w-[23.223vh]"
                       data-aos="zoom-in-left"
                     />
                     <Image
@@ -465,7 +471,7 @@ function HijauSage({
                       alt="bgisi1"
                       height={200}
                       width={200}
-                      className="absolute z-[99] left-14 mt-[3rem]"
+                      className="absolute z-[99] left-14 mt-[5.687vh] h-[23.697vh] w-[23.697vh]"
                       data-aos="zoom-in"
                     />
                     <Image
@@ -473,7 +479,7 @@ function HijauSage({
                       alt="bgisi2"
                       height={200}
                       width={200}
-                      className="absolute z-[99] right-0 mt-[20rem]"
+                      className="absolute z-[99] right-0 mt-[2.37vh] h-[23.697vh] w-[23.697vh]"
                       data-aos="zoom-in"
                     />
                     <Image
@@ -481,8 +487,8 @@ function HijauSage({
                       alt="bgisi3"
                       height={200}
                       width={200}
-                      className="absolute z-[99] left-0 mt-[40rem]"
-                      //   data-aos="zoom-in"
+                      className="absolute z-[99] left-0 mt-[75.829vh] h-[23.697vh] w-[23.697vh]"
+                      data-aos="zoom-in"
                     />
                   </>
                   <div className="h-screen flex flex-col justify-center">
@@ -492,7 +498,7 @@ function HijauSage({
                       jam={data?.jam_akad}
                       alamat={data?.alamat}
                     />
-                    <div className="mt-14" />
+                    <div className="mt-[6.635vh]" />
                     <AcaraSection
                       type={1}
                       tanggal={data?.tanggal_resepsi}
@@ -500,7 +506,7 @@ function HijauSage({
                       alamat={data?.alamat}
                     />
                     <div
-                      className="flex gap-5 justify-center mt-[62px]"
+                      className="flex gap-[2.37vh] justify-center mt-[7.346vh]"
                       data-aos="zoom-in"
                     >
                       <Countdown number={counter.hari} label="Hari" />
@@ -517,7 +523,7 @@ function HijauSage({
                       alt="daungift1"
                       height={186}
                       width={136}
-                      className="absolute z-[99] left-0 mt-0"
+                      className="absolute z-[99] left-0 mt-0 h-[22.038vh] w-[16.114vh]"
                       data-aos="zoom-in-right"
                     />
                     <Image
@@ -525,7 +531,7 @@ function HijauSage({
                       alt="daungift2"
                       height={156}
                       width={144}
-                      className="absolute z-[99] right-0 mt-[19rem]"
+                      className="absolute z-[99] right-0 mt-[36.019vh] h-[18.483vh] w-[17.062vh]"
                       data-aos="zoom-in-left"
                     />
                     <Image
@@ -533,7 +539,7 @@ function HijauSage({
                       alt="daungift3"
                       height={178}
                       width={165}
-                      className="absolute z-[99] left-0 mt-[31rem]"
+                      className="absolute z-[99] left-0 mt-[58.768vh] h-[21.09vh] w-[19.55vh]"
                       data-aos="zoom-in-right"
                     />
                     <Image
@@ -541,25 +547,25 @@ function HijauSage({
                       alt="daungiftbawah"
                       height={96}
                       width={180}
-                      className="absolute z-[99] bottom-0 left-0 right-0 ml-auto mr-auto"
-                      //   data-aos="zoom-in-up"
+                      className="absolute z-[99] bottom-0 left-0 right-0 ml-auto mr-auto h-[8.374vh] w-[21.327vh]"
+                      // data-aos="zoom-in-up"
                     />
                   </>
-                  <div className="h-screen flex flex-col justify-center rounded-full bg-[#d5c3ac] px-[45px]">
+                  <div className="h-screen flex flex-col justify-center rounded-full bg-[#d5c3ac] px-[5.332vh]">
                     <h1
-                      className={`${lobster.className} text-[48px] text-[#336546] text-center`}
+                      className={`${lobster.className} text-[5.687vh] text-[#336546] text-center`}
                       data-aos="zoom-in"
                     >
                       Gift
                     </h1>
                     <p
-                      className={`${poppins.className} text-[12px] text-black text-center py-6`}
+                      className={`${poppins.className} text-[1.422vh] text-black text-center py-6`}
                       data-aos="zoom-in"
                     >
                       Bagi yang berkeinginan memberikan tanda kasih, kami
                       menyediakan wedding gift dibawah ini:
                     </p>
-                    <div className="flex flex-col gap-8 px-[15px]">
+                    <div className="flex flex-col gap-8 px-[1.777vh]">
                       {data.gift.map((item: Gift, index: number) => {
                         return (
                           <GiftCard
@@ -572,19 +578,19 @@ function HijauSage({
                       })}
                     </div>
                     <p
-                      className={`${poppins.className} text-[12px] text-black text-center mb-2 mt-4`}
+                      className={`${poppins.className} text-[1.422vh] text-black text-center mb-2 mt-4`}
                       data-aos="zoom-in"
                     >
                       Terima Kasih <br /> Atas kehadiran dan Doa restunya
                     </p>
                     <p
-                      className={`${poppins.className} text-[12px] text-black text-center mb-3`}
+                      className={`${poppins.className} text-[1.422vh] text-black text-center mb-3`}
                       data-aos="zoom-in"
                     >
                       Kami yang Berbahagia, Keluarga Besar Kedua Mempelai
                     </p>
                     <p
-                      className={`${licorice.className} text-center text-[36px] text-[#336546]`}
+                      className={`${licorice.className} text-center text-[4.265vh] text-[#336546]`}
                       data-aos="zoom-in"
                     >
                       {data?.singkatan_wanita} & {data?.singkatan_pria}
