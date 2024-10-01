@@ -51,7 +51,9 @@ const MempelaiSection = ({
         alt="mw"
         height={206}
         width={169}
-        className=" mx-4 h-[24.408vh] w-[20.024vh]"
+        className={`mx-4 ${
+          type === 0 ? "h-[24.408vh] w-[20.024vh]" : "h-[27.725] w-[19.905vh]"
+        }`}
       />
       <p
         className={`${licorice.className} text-center text-[3.555vh] text-[#996A32]`}
@@ -413,10 +415,8 @@ function HijauSage({
                       className={`${poppins.className} text-[1.422vh] text-black text-center mb-4`}
                       data-aos="zoom-in"
                     >
-                      “Dan segala sesuatunya Kami ciptakan
-                      <br /> berpasang-pasangan agar kamu <br /> mengingat
-                      kebesaran Allah”. <br />
-                      (QS. Adz Dzariyaat, 51: 49)
+                      Dengan memohon rahmat dan ridho Allah SWT kami mengundang
+                      Bapak/Ibu/Saudara/i pada pernikahan :
                     </p>
                     <MempelaiSection
                       type={0}
