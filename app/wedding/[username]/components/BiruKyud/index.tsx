@@ -337,11 +337,15 @@ function BiruKyud({
                     {data?.singkatan_pria}
                   </p>
                   <div data-aos="zoom-in" className="mt-[6.043vh]">
-                    <p className="text-center mb-[0.711vh]">
+                    <p className="text-center mb-[0.711vh] text-[1.422vh]">
                       Kpd Bpk/Ibu/Saudara/i
                     </p>
-                    <p className="font-bold text-center">{receiver.to}</p>
-                    <p className="font-bold text-center">{receiver.at}</p>
+                    <p className="font-bold text-center text-[1.659vh]">
+                      {receiver.to}
+                    </p>
+                    <p className="font-bold text-center text-[1.659vh]">
+                      {receiver.at}
+                    </p>
                   </div>
                   <div className="animate-fadein">
                     <button
