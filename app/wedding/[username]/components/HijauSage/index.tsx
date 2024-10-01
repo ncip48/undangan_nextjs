@@ -579,19 +579,19 @@ function HijauSage({
                     </div>
                     <p
                       className={`${poppins.className} text-[1.422vh] text-black text-center mb-2 mt-4`}
-                      data-aos="zoom-in"
+                      // data-aos="zoom-in"
                     >
                       Terima Kasih <br /> Atas kehadiran dan Doa restunya
                     </p>
                     <p
                       className={`${poppins.className} text-[1.422vh] text-black text-center mb-3`}
-                      data-aos="zoom-in"
+                      // data-aos="zoom-in"
                     >
                       Kami yang Berbahagia, Keluarga Besar Kedua Mempelai
                     </p>
                     <p
                       className={`${licorice.className} text-center text-[4.265vh] text-[#336546]`}
-                      data-aos="zoom-in"
+                      // data-aos="zoom-in"
                     >
                       {data?.singkatan_wanita} & {data?.singkatan_pria}
                     </p>
