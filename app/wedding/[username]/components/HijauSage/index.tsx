@@ -487,7 +487,7 @@ function HijauSage({
                       alt="bgisi3"
                       height={200}
                       width={200}
-                      className="absolute z-[99] left-0 mt-[75.829vh] h-[23.697vh] w-[23.697vh]"
+                      className="absolute z-[99] left-0 mt-[67.299vh] h-[23.697vh] w-[23.697vh]"
                       data-aos="zoom-in"
                     />
                   </>
