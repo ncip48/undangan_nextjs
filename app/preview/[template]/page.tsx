@@ -4,6 +4,7 @@ import { redirect, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { WeddingInterface } from "@/interfaces/wedding";
 import HijauSage from "@/app/wedding/[username]/components/HijauSage";
+import BiruKyud from "@/app/wedding/[username]/components/BiruKyud";
 
 function Page({ params }: { params: { template: string } }) {
   const searchParams = useSearchParams();
@@ -86,6 +87,8 @@ function Page({ params }: { params: { template: string } }) {
   switch (template) {
     case "hijausage":
       return <HijauSage receiver={receiver} data={data} />;
+    case "birukyud":
+      return <BiruKyud receiver={receiver} data={data} />;
     default:
       return redirect("/");
   }
