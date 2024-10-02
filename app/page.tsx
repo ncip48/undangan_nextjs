@@ -107,8 +107,13 @@ const PricingCard = ({
         </ul>
 
         <button
-          type="button"
-          className="w-full mt-6 px-4 py-2 text-sm tracking-wide bg-purple-600 hover:bg-purple-700 text-white rounded-xl"
+          onClick={() =>
+            window.open(
+              `https://wa.me/+6285888115315?text=Halo InvitasiDigi, saya ingin membeli template ${title}`,
+              "_blank"
+            )
+          }
+          className="w-full mt-6 px-4 py-2 text-sm tracking-wide bg-orange-600 hover:bg-orange-700 text-white rounded-xl transition-all duration-300 ease-in-out"
         >
           Pilih
         </button>
@@ -132,7 +137,7 @@ function Page() {
   return (
     <div className="bg-gray-100 text-gray-800">
       {/* Navbar */}
-      <nav className="navbar fixed top-0 left-0 w-full bg-blue-600 transition duration-300 ease-in-out z-50">
+      <nav className="navbar fixed top-0 left-0 w-full bg-orange-600 transition duration-300 ease-in-out z-50">
         <div className="container mx-auto flex justify-between items-center py-4">
           <a href="#" className="text-xl font-bold text-white">
             InvitasiDigi
@@ -155,7 +160,7 @@ function Page() {
       </nav>
 
       {/* <!-- Hero Section --> */}
-      <section className="bg-blue-600 text-white h-screen">
+      <section className="bg-orange-600 text-white h-screen">
         <div className="container h-screen mx-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col justify-center items-start py-20">
             <h1 className="text-4xl font-bold">
@@ -166,7 +171,7 @@ function Page() {
             </p>
             <a
               href="#contact"
-              className="mt-8 inline-block bg-white text-blue-600 py-2 px-6 rounded-full font-semibold"
+              className="mt-8 inline-block bg-white text-orange-600 py-2 px-6 rounded-full font-semibold"
             >
               Hubungi Kami
             </a>
@@ -232,7 +237,7 @@ function Page() {
                   <h3 className="font-semibold text-xl mt-4">{item.name}</h3>
                   <a
                     href={`/preview/${item.path}`}
-                    className="mt-2 inline-block bg-blue-600 text-white py-2 px-4 rounded-full"
+                    className="mt-2 inline-block bg-orange-600 text-white py-2 px-4 rounded-full"
                     target="_blank"
                   >
                     Preview
@@ -291,7 +296,7 @@ function Page() {
             ></textarea>
             <button
               type="submit"
-              className="bg-blue-600 text-white py-2 px-4 rounded-full"
+              className="bg-orange-600 text-white py-2 px-4 rounded-full"
             >
               Kirim
             </button>
@@ -576,7 +581,7 @@ function Page() {
         </div>
       </section>
       {/* <!-- Footer --> */}
-      <footer className="py-6 bg-blue-600 text-white text-center">
+      <footer className="py-6 bg-orange-600 text-white text-center">
         <p>&copy; 2023 InvitasiDigi. Semua hak dilindungi.</p>
       </footer>
     </div>
