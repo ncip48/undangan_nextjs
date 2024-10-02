@@ -298,9 +298,9 @@ function BiruKyud({
                   />
                 </>
                 {/* end daun */}
-                <div className="border-2 border-black flex flex-col items-center rounded-t-full h-full justify-center">
-                  <div className="border-2 border-black p-[0.237vh] rounded-[50%] flex flex-col items-center justify-center">
-                    <div className="border border-black h-[16.232vh] w-[11.848vh] rounded-[50%]">
+                <div className="bg-white border-2 border-[#085066] flex flex-col items-center rounded-t-full h-full justify-center">
+                  <div className="border-2 border-[#085066] p-[0.237vh] rounded-[50%] flex flex-col items-center justify-center">
+                    <div className="border border-[#085066] h-[16.232vh] w-[11.848vh] rounded-[50%]">
                       <h1
                         className={`${kadwa.className} text-[7.583vh] text-[#87B1E1] m-0 p-0 ml-[1.777vh]`}
                       >
@@ -368,14 +368,14 @@ function BiruKyud({
               {/* undangan isi */}
               <audio loop hidden autoPlay={playing}></audio>
               <div className="relative bg-white">
-                <div ref={refMempelai} className="pt-[13.152vh]">
+                <div ref={refMempelai} className="pt-[14.455vh]">
                   <>
                     <Image
-                      src="/assets/templates/t1/isiatas.png"
-                      alt="isiatas"
+                      src="/assets/templates/t2/isi1.png"
+                      alt="isi1"
                       height={104}
                       width={390}
-                      className="absolute z-[99] top-0 h-[12.322vh] w-full"
+                      className="absolute z-[99] top-0 w-[40.284vh] h-[10.545vh] mx-auto left-0 right-0 m-auto"
                       data-aos="fade-down"
                     />
                     <Image
@@ -413,7 +413,7 @@ function BiruKyud({
                   </>
                   <div className="p-4 flex flex-col items-center">
                     <p
-                      className={`${poppins.className} text-[1.422vh] text-black text-center mb-4`}
+                      className={`${pridi.className} text-[1.422vh] text-black text-center mb-[1.066vh]`}
                       data-aos="zoom-in"
                     >
                       “Dan segala sesuatunya Kami ciptakan
